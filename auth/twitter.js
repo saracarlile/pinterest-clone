@@ -15,7 +15,7 @@ passport.deserializeUser(function (id, fn) {
 passport.use(new TwitterStrategy({
     consumerKey: "Whh4NrsfOogmIhYgMq4XpvJKc",
     consumerSecret: "sDzym4UFiJPHOZbeHWnDsARmkXGZNDItu5CeTglH9Q3Fxcvqw7",
-    callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+    callbackURL: "https://shielded-crag-80225.herokuapp.com/auth/twitter/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate({name: profile.displayName}, {name: profile.displayName,userid: profile.id}, function(err, user) {
