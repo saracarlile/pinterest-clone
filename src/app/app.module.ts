@@ -10,18 +10,16 @@ import { AppComponent } from './app.component';
 import { AllPinsComponent } from './all-pins/all-pins.component';
 import { MyPinsComponent } from './my-pins/my-pins.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HomeComponent } from './home/home.component';
 
-import { LoginService } from './login.service';
+
 import { AuthService } from './auth/auth.service';
 
 
 const appRoutes: Routes = [
   { path: 'all-pins', component: AllPinsComponent },
   { path: 'my-pins',      component: MyPinsComponent },
-  { path: 'home',      component: HomeComponent },
   { path: '',
-    redirectTo: '/home',
+    redirectTo: '/all-pins',
     pathMatch: 'full'
   },
   { path: '**', component: PageNotFoundComponent }
@@ -33,8 +31,7 @@ const appRoutes: Routes = [
     AppComponent,
     AllPinsComponent,
     MyPinsComponent,
-    PageNotFoundComponent,
-    HomeComponent
+    PageNotFoundComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -45,7 +42,6 @@ const appRoutes: Routes = [
     HttpClientModule,
   ],
   providers: [
-    LoginService,
     AuthService
   ],
   bootstrap: [AppComponent]

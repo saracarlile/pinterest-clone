@@ -1,7 +1,29 @@
 <div class="container">
-    <p>App Component works</p>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">Pinterest Interest</a>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/all-pins" routerLinkActive="active">All Pins</a>       
+            </li>
+            <li  *ngIf="auth.isAuthenticated()" class="nav-item">
+                <a class="nav-link" routerLink="/my-pins" routerLinkActive="active">My Pins</a>
+            </li>
+            <li *ngIf="!auth.isAuthenticated()"  class="nav-item">
+                <a class="nav-link" (click)="auth.login()">Login</a>
+            </li>
+            <li *ngIf="auth.isAuthenticated()"  class="nav-item">
+                <a class="nav-link" (click)="auth.logout()">Log Out</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-    <h1>Angular Router</h1>
+
 
     <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -31,11 +53,6 @@
     </div>
   </div>
 </nav>
-    <nav>
-        <a routerLink="/home" routerLinkActive="active">Home</a>
-        <a routerLink="/all-pins" routerLinkActive="active">All Pins</a>
-        <a routerLink="/my-pins" routerLinkActive="active">My Pins</a>
-    </nav>
 
     <router-outlet></router-outlet>
 

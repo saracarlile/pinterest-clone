@@ -23,3 +23,4 @@ User Story: As an authenticated user, if I upload an image that is broken, it wi
 ## Technologies
 MEAN Stack - MongoDB, Express, Angular 5.1.0, Node.JS
 Also using Bootstrap 4.0
+Using Aut0 for authentication with TWitter https://auth0.com/
