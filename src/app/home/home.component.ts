@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import { AuthService } from '../auth/auth.service';
+
+import {HttpClient} from '@angular/common/http';
+import * as auth0 from 'auth0-js';
 
 @Component({
   selector: 'app-home',
@@ -8,11 +12,11 @@ import { LoginService } from '../login.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private loginSerivce : LoginService) { }
+  constructor(private loginSerivce : LoginService, private authService: AuthService) { }
 
   public login() {
     console.log('login test!');
-    this.loginSerivce.twitterLogin();
+    this.authService.login();
   }
 
   ngOnInit() {

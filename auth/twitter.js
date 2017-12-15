@@ -12,10 +12,10 @@ passport.deserializeUser(function (id, fn) {
   });
 });
 
-passport.use(new TwitterStrategy({
-    consumerKey: "Whh4NrsfOogmIhYgMq4XpvJKc",
-    consumerSecret: "sDzym4UFiJPHOZbeHWnDsARmkXGZNDItu5CeTglH9Q3Fxcvqw7",
-    callbackURL: "https://shielded-crag-80225.herokuapp.com/auth/twitter/callback"
+passport.use(new TwitterStrategy({  //real values have been removed
+    consumerKey: "Whh4Nr",
+    consumerSecret: "sDzym4UF",
+    callbackURL: "https://s"
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate({name: profile.displayName}, {name: profile.displayName,userid: profile.id}, function(err, user) {

@@ -99,7 +99,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n    <p>App Component works</p>\n\n    <h1>Angular Router</h1>\n    <nav>\n        <a routerLink=\"/home\" routerLinkActive=\"active\">Home</a>\n        <a routerLink=\"/all-pins\" routerLinkActive=\"active\">All Pins</a>\n        <a routerLink=\"/my-pins\" routerLinkActive=\"active\">My Pins</a>\n    </nav>\n\n    <router-outlet></router-outlet>\n\n\n</div>"
+module.exports = "<div class=\"container\">\n    <p>App Component works</p>\n\n    <h1>Angular Router</h1>\n\n    <nav class=\"navbar navbar-default\">\n  <div class=\"container-fluid\">\n    <div class=\"navbar-header\">\n      <a class=\"navbar-brand\" href=\"#\">Auth0 - Angular</a>\n\n      <button\n        class=\"btn btn-primary btn-margin\"\n        routerLink=\"/\">\n          Home\n      </button>\n\n      <button\n        class=\"btn btn-primary btn-margin\"\n        *ngIf=\"!auth.isAuthenticated()\"\n        (click)=\"auth.login()\">\n          Log In\n      </button>\n\n      <button\n        class=\"btn btn-primary btn-margin\"\n        *ngIf=\"auth.isAuthenticated()\"\n        (click)=\"auth.logout()\">\n          Log Out\n      </button>\n\n    </div>\n  </div>\n</nav>\n    <nav>\n        <a routerLink=\"/home\" routerLinkActive=\"active\">Home</a>\n        <a routerLink=\"/all-pins\" routerLinkActive=\"active\">All Pins</a>\n        <a routerLink=\"/my-pins\" routerLinkActive=\"active\">My Pins</a>\n    </nav>\n\n    <router-outlet></router-outlet>\n\n\n</div>"
 
 /***/ }),
 
@@ -109,23 +109,30 @@ module.exports = "<div class=\"container\">\n    <p>App Component works</p>\n\n 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_auth_service__ = __webpack_require__("../../../../../src/app/auth/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'app';
+    function AppComponent(auth) {
+        this.auth = auth;
+        auth.handleAuthentication();
     }
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../src/app/app.component.html"),
             styles: [__webpack_require__("../../../../../src/app/app.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__auth_auth_service__["a" /* AuthService */]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -149,6 +156,7 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../src/app/page-not-found/page-not-found.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__login_service__ = __webpack_require__("../../../../../src/app/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__auth_auth_service__ = __webpack_require__("../../../../../src/app/auth/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -159,6 +167,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 // Import HttpClientModule from @angular/common/http
+
 
 
 
@@ -189,17 +198,104 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_8__home_home_component__["a" /* HomeComponent */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* RouterModule */].forRoot(appRoutes
+                __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */].forRoot(appRoutes
                 //   { enableTracing: true } // <-- debugging purposes only
                 ),
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
             ],
-            providers: [__WEBPACK_IMPORTED_MODULE_9__login_service__["a" /* LoginService */]],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_9__login_service__["a" /* LoginService */],
+                __WEBPACK_IMPORTED_MODULE_10__auth_auth_service__["a" /* AuthService */]
+            ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../src/app/auth/auth.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/filter.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_auth0_js__ = __webpack_require__("../../../../auth0-js/src/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_auth0_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_auth0_js__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var AuthService = (function () {
+    function AuthService(router) {
+        this.router = router;
+        this.auth0 = new __WEBPACK_IMPORTED_MODULE_3_auth0_js__["WebAuth"]({
+            clientID: '2ckS5lR3W2a2yuJs5Fti5cbrKttmHiGf',
+            domain: 'pinterest-clone.auth0.com',
+            responseType: 'token id_token',
+            audience: 'https://pinterest-clone.auth0.com/userinfo',
+            redirectUri: 'https://shielded-crag-80225.herokuapp.com/callback',
+            scope: 'openid'
+        });
+    }
+    AuthService.prototype.login = function () {
+        this.auth0.authorize();
+    };
+    AuthService.prototype.handleAuthentication = function () {
+        var _this = this;
+        this.auth0.parseHash(function (err, authResult) {
+            if (authResult && authResult.accessToken && authResult.idToken) {
+                window.location.hash = '';
+                _this.setSession(authResult);
+                _this.router.navigate(['/home']);
+            }
+            else if (err) {
+                _this.router.navigate(['/home']);
+                console.log(err);
+            }
+        });
+    };
+    AuthService.prototype.setSession = function (authResult) {
+        // Set the time that the access token will expire at
+        var expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+        localStorage.setItem('access_token', authResult.accessToken);
+        localStorage.setItem('id_token', authResult.idToken);
+        localStorage.setItem('expires_at', expiresAt);
+    };
+    AuthService.prototype.logout = function () {
+        // Remove tokens and expiry time from localStorage
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('id_token');
+        localStorage.removeItem('expires_at');
+        // Go back to the home route
+        this.router.navigate(['/']);
+    };
+    AuthService.prototype.isAuthenticated = function () {
+        // Check whether the current time is past the
+        // access token's expiry time
+        var expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+        return new Date().getTime() < expiresAt;
+    };
+    AuthService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
+    ], AuthService);
+    return AuthService;
 }());
 
 
@@ -238,6 +334,7 @@ module.exports = "<p>\n  home works!\n</p>\n<br>\n<button class=\"btn btn-primar
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__login_service__ = __webpack_require__("../../../../../src/app/login.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__ = __webpack_require__("../../../../../src/app/auth/auth.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -249,13 +346,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var HomeComponent = (function () {
-    function HomeComponent(loginSerivce) {
+    function HomeComponent(loginSerivce, authService) {
         this.loginSerivce = loginSerivce;
+        this.authService = authService;
     }
     HomeComponent.prototype.login = function () {
         console.log('login test!');
-        this.loginSerivce.twitterLogin();
+        this.authService.login();
     };
     HomeComponent.prototype.ngOnInit = function () {
     };
@@ -265,7 +364,7 @@ var HomeComponent = (function () {
             template: __webpack_require__("../../../../../src/app/home/home.component.html"),
             styles: [__webpack_require__("../../../../../src/app/home/home.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__login_service__["a" /* LoginService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__login_service__["a" /* LoginService */], __WEBPACK_IMPORTED_MODULE_2__auth_auth_service__["a" /* AuthService */]])
     ], HomeComponent);
     return HomeComponent;
 }());
@@ -296,11 +395,6 @@ var LoginService = (function () {
     function LoginService(http) {
         this.http = http;
     }
-    LoginService.prototype.twitterLogin = function () {
-        this.http.get('/auth/twitter').subscribe(function (data) {
-            console.log(data);
-        });
-    };
     LoginService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])

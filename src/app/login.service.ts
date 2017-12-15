@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
+
+
 @Injectable()
 export class LoginService {
 
@@ -8,10 +10,6 @@ export class LoginService {
 
 
 
-  public twitterLogin() {  //user login with TWitter
-    this.http.get('/auth/twitter').subscribe(data => {
-      console.log(data);
-    });
-  }
+
 
 }

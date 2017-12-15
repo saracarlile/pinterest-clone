@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 
 import { LoginService } from './login.service';
+import { AuthService } from './auth/auth.service';
 
 
 const appRoutes: Routes = [
@@ -43,7 +44,10 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
