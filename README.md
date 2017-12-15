@@ -18,7 +18,7 @@ User Story: As an authenticated user, if I upload an image that is broken, it wi
 
 
 ## View Project
-[View live demo of Pinterest Clone](https://serene-waters-48479.herokuapp.com/)
+[View live demo of Pinterest Clone](https://shielded-crag-80225.herokuapp.com/)
 
 ## Technologies
 MEAN Stack - MongoDB, Express, Angular 5.1.0, Node.JS
