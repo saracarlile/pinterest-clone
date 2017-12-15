@@ -16,10 +16,10 @@ import { AuthService } from './auth/auth.service';
 
 
 const appRoutes: Routes = [
-  { path: 'all-pins', component: AllPinsComponent },
+  { path: 'home', component: AllPinsComponent },
   { path: 'my-pins',      component: MyPinsComponent },
   { path: '',
-    redirectTo: '/all-pins',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   { path: '**', component: PageNotFoundComponent }

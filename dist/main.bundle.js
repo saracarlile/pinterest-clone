@@ -99,7 +99,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <a class=\"navbar-brand\">Pinterest Interest</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\"\n        aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav  mr-auto\">\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" routerLink=\"/all-pins\" routerLinkActive=\"active\">All Pins</a>\n            </li>\n            <li *ngIf=\"auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" routerLink=\"/my-pins\" routerLinkActive=\"active\">My Pins</a>\n            </li>\n            <li *ngIf=\"!auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" (click)=\"auth.login()\">Login</a>\n            </li>\n            <li *ngIf=\"auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" (click)=\"auth.logout()\">Log Out</a>\n            </li>\n        </ul>\n    </div>\n</nav>\n\n\n<div class=\"container-fluid\">\n    <router-outlet></router-outlet>\n</div>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <a class=\"navbar-brand\">Pinterest Interest</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\"\n        aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav  mr-auto\">\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" routerLink=\"/home\" routerLinkActive=\"active\">All Pins</a>\n            </li>\n            <li *ngIf=\"auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" routerLink=\"/my-pins\" routerLinkActive=\"active\">My Pins</a>\n            </li>\n            <li *ngIf=\"!auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" (click)=\"auth.login()\">Login</a>\n            </li>\n            <li *ngIf=\"auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" (click)=\"auth.logout()\">Log Out</a>\n            </li>\n        </ul>\n    </div>\n</nav>\n\n\n<div class=\"container-fluid\">\n    <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -172,10 +172,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var appRoutes = [
-    { path: 'all-pins', component: __WEBPACK_IMPORTED_MODULE_5__all_pins_all_pins_component__["a" /* AllPinsComponent */] },
+    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_5__all_pins_all_pins_component__["a" /* AllPinsComponent */] },
     { path: 'my-pins', component: __WEBPACK_IMPORTED_MODULE_6__my_pins_my_pins_component__["a" /* MyPinsComponent */] },
     { path: '',
-        redirectTo: '/all-pins',
+        redirectTo: '/home',
         pathMatch: 'full'
     },
     { path: '**', component: __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */] }
@@ -196,7 +196,7 @@ var AppModule = (function () {
                 //   { enableTracing: true } // <-- debugging purposes only
                 ),
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["a" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_8__auth_auth_service__["a" /* AuthService */]
@@ -221,6 +221,7 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/filter.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_auth0_js__ = __webpack_require__("../../../../auth0-js/src/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_auth0_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_auth0_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -234,9 +235,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AuthService = (function () {
-    function AuthService(router) {
+    function AuthService(router, http) {
         this.router = router;
+        this.http = http;
         this.auth0 = new __WEBPACK_IMPORTED_MODULE_3_auth0_js__["WebAuth"]({
             clientID: '2ckS5lR3W2a2yuJs5Fti5cbrKttmHiGf',
             domain: 'pinterest-clone.auth0.com',
@@ -246,6 +249,8 @@ var AuthService = (function () {
             scope: 'openid'
         });
     }
+    AuthService.prototype.getUserInfo = function (token) {
+    };
     AuthService.prototype.login = function () {
         this.auth0.authorize();
     };
@@ -254,6 +259,8 @@ var AuthService = (function () {
         this.auth0.parseHash(function (err, authResult) {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 console.log(authResult);
+                _this.accessToken = _this.authResult.access_token;
+                console.log(_this.accessToken);
                 window.location.hash = '';
                 _this.setSession(authResult);
                 _this.router.navigate(['/home']);
@@ -287,7 +294,7 @@ var AuthService = (function () {
     };
     AuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* Router */], __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["a" /* HttpClient */]])
     ], AuthService);
     return AuthService;
 }());

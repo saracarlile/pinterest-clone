@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
+import { HttpClient,  HttpHeaders  } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
+
+
 
   auth0 = new auth0.WebAuth({
     clientID: '2ckS5lR3W2a2yuJs5Fti5cbrKttmHiGf',
@@ -15,7 +18,14 @@ export class AuthService {
     scope: 'openid'
   });
 
-  constructor(public router: Router) {}
+  constructor(public router: Router, private http: HttpClient) {}
+
+  private accessToken: string;
+
+  private getUserInfo(token) {
+      
+
+  }
 
   public login(): void {
     this.auth0.authorize();
@@ -24,7 +34,11 @@ export class AuthService {
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
+
         console.log(authResult);
+        this.accessToken = (<any>this).authResult.access_token;
+        console.log(this.accessToken);
+
         window.location.hash = '';
         this.setSession(authResult);
         this.router.navigate(['/home']);
