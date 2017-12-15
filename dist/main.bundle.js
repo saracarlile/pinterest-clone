@@ -99,7 +99,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <a class=\"navbar-brand\">Pinterest Interest</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\"\n        aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav  mr-auto\">\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" routerLink=\"/home\" routerLinkActive=\"active\">All Pins</a>\n            </li>\n            <li *ngIf=\"auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" routerLink=\"/my-pins\" routerLinkActive=\"active\">My Pins</a>\n            </li>\n            <li *ngIf=\"!auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" (click)=\"auth.login()\">Login</a>\n            </li>\n            <li *ngIf=\"auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" (click)=\"auth.logout()\">Log Out</a>\n            </li>\n        </ul>\n    </div>\n</nav>\n\n\n<div class=\"container-fluid\">\n    <router-outlet></router-outlet>\n</div>"
+module.exports = "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">\n    <a class=\"navbar-brand\">Pinterest Interest</a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\"\n        aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n    </button>\n\n    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav  mr-auto\">\n            <li class=\"nav-item\">\n                <a class=\"nav-link\" routerLink=\"/all-pins\" routerLinkActive=\"active\">All Pins</a>\n            </li>\n            <li *ngIf=\"auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" routerLink=\"/my-pins\" routerLinkActive=\"active\">My Pins</a>\n            </li>\n            <li *ngIf=\"!auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" (click)=\"auth.login()\">Login</a>\n            </li>\n            <li *ngIf=\"auth.isAuthenticated()\" class=\"nav-item\">\n                <a class=\"nav-link\" (click)=\"auth.logout()\">Log Out</a>\n            </li>\n        </ul>\n    </div>\n</nav>\n\n\n<div class=\"container-fluid\">\n    <router-outlet></router-outlet>\n</div>"
 
 /***/ }),
 
@@ -172,10 +172,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var appRoutes = [
-    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_5__all_pins_all_pins_component__["a" /* AllPinsComponent */] },
+    { path: 'all-pins', component: __WEBPACK_IMPORTED_MODULE_5__all_pins_all_pins_component__["a" /* AllPinsComponent */] },
     { path: 'my-pins', component: __WEBPACK_IMPORTED_MODULE_6__my_pins_my_pins_component__["a" /* MyPinsComponent */] },
     { path: '',
-        redirectTo: '/home',
+        redirectTo: '/all-pins',
         pathMatch: 'full'
     },
     { path: '**', component: __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */] }
@@ -245,7 +245,7 @@ var AuthService = (function () {
             domain: 'pinterest-clone.auth0.com',
             responseType: 'token id_token',
             audience: 'https://pinterest-clone.auth0.com/userinfo',
-            redirectUri: 'https://shielded-crag-80225.herokuapp.com/callback',
+            redirectUri: 'https://shielded-crag-80225.herokuapp.com/all-pins',
             scope: 'openid'
         });
     }

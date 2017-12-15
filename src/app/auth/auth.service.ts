@@ -14,7 +14,7 @@ export class AuthService {
     domain: 'pinterest-clone.auth0.com',
     responseType: 'token id_token',
     audience: 'https://pinterest-clone.auth0.com/userinfo',
-    redirectUri: 'https://shielded-crag-80225.herokuapp.com/callback',      
+    redirectUri: 'https://shielded-crag-80225.herokuapp.com/all-pins',      
     scope: 'openid'
   });
 
