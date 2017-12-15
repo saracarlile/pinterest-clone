@@ -2,12 +2,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+// Import HttpClientModule from @angular/common/http
+import {HttpClientModule} from '@angular/common/http';
+
 
 import { AppComponent } from './app.component';
 import { AllPinsComponent } from './all-pins/all-pins.component';
 import { MyPinsComponent } from './my-pins/my-pins.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
+
+import { LoginService } from './login.service';
 
 
 const appRoutes: Routes = [
@@ -35,9 +40,10 @@ const appRoutes: Routes = [
       appRoutes
    //   { enableTracing: true } // <-- debugging purposes only
     ),
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

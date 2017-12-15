@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginSerivce : LoginService) { }
+
+  public login() {
+    console.log('login test!');
+    this.loginSerivce.twitterLogin();
+  }
 
   ngOnInit() {
   }
