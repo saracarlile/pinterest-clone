@@ -18,7 +18,22 @@ export class AuthService {
     scope: 'openid'
   });
 
-  constructor(public router: Router, private http: HttpClient) {}
+  constructor(public router: Router, private httpClient: HttpClient) {}
+
+  public userInfo(id){
+    this.httpClient.post("/auth/user-info/",
+    {
+        "id": id
+    })
+    .subscribe(
+        data => {
+            console.log("POST Request is successful ", data);
+        },
+        error => {
+            console.log("Error", error);
+        }
+    );           
+  }
 
   public login(): void {
     this.auth0.authorize();
@@ -42,20 +57,8 @@ export class AuthService {
         console.log(user);
         console.log(encodeURIComponent(user["sub"]));
         let userid = encodeURIComponent(user["sub"]);
-
-        this.http.post("/auth/user-info",
-        {
-            "id": userid
-        })
-        .subscribe(
-            data => {
-                console.log("POST Request is successful ", data);
-            },
-            error => {
-                console.log("Error", error);
-            }
-        ); 
-                  
+        this.userinfo(userid);
+    
       });
     
 

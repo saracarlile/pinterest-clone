@@ -241,9 +241,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AuthService = (function () {
-    function AuthService(router, http) {
+    function AuthService(router, httpClient) {
         this.router = router;
-        this.http = http;
+        this.httpClient = httpClient;
         this.auth0 = new __WEBPACK_IMPORTED_MODULE_3_auth0_js__["WebAuth"]({
             clientID: '2ckS5lR3W2a2yuJs5Fti5cbrKttmHiGf',
             domain: 'pinterest-clone.auth0.com',
@@ -253,6 +253,16 @@ var AuthService = (function () {
             scope: 'openid'
         });
     }
+    AuthService.prototype.userInfo = function (id) {
+        this.httpClient.post("/auth/user-info/", {
+            "id": id
+        })
+            .subscribe(function (data) {
+            console.log("POST Request is successful ", data);
+        }, function (error) {
+            console.log("Error", error);
+        });
+    };
     AuthService.prototype.login = function () {
         this.auth0.authorize();
     };
@@ -270,14 +280,7 @@ var AuthService = (function () {
                     console.log(user);
                     console.log(encodeURIComponent(user["sub"]));
                     var userid = encodeURIComponent(user["sub"]);
-                    this.http.post("/auth/user-info", {
-                        "id": userid
-                    })
-                        .subscribe(function (data) {
-                        console.log("POST Request is successful ", data);
-                    }, function (error) {
-                        console.log("Error", error);
-                    });
+                    this.userinfo(userid);
                 });
             }
             else if (err) {
