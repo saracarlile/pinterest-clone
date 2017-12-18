@@ -253,8 +253,6 @@ var AuthService = (function () {
             scope: 'openid'
         });
     }
-    AuthService.prototype.getUserInfo = function (token) {
-    };
     AuthService.prototype.login = function () {
         this.auth0.authorize();
     };
@@ -266,6 +264,10 @@ var AuthService = (function () {
                 window.location.hash = '';
                 _this.setSession(authResult);
                 _this.router.navigate(['/home']);
+                _this.auth0.client.userInfo(authResult.accessToken, function (err, user) {
+                    // Now you have the user's information
+                    console.log(user);
+                });
             }
             else if (err) {
                 _this.router.navigate(['/home']);

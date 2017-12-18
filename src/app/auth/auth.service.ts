@@ -20,11 +20,6 @@ export class AuthService {
 
   constructor(public router: Router, private http: HttpClient) {}
 
-  private getUserInfo(token) {
-      
-
-  }
-
   public login(): void {
     this.auth0.authorize();
   }
@@ -38,6 +33,13 @@ export class AuthService {
         window.location.hash = '';
         this.setSession(authResult);
        this.router.navigate(['/home']);
+
+       this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
+        // Now you have the user's information
+        console.log(user);
+      });
+    
+
       } else if (err) {
         this.router.navigate(['/home']);
         console.log(err);
