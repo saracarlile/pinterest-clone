@@ -36,7 +36,11 @@ export class AuthService {
 
        this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
         // Now you have the user's information
+        //https://pinterest-clone.auth0.com/api/v2/users/twitter%7C17258519
+        
+
         console.log(user);
+        console.log(encodeURIComponent(user["sub"]));
       });
     
 
