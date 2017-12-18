@@ -43,7 +43,7 @@ export class AuthService {
        this.router.navigate(['/home']);
 
        let url = 'https://pinterest-clone.auth0.com/userinfo'
-       let headers = new Headers({'Authorization': 'Bearer ' + authResult.accessToken});
+       let headers = new Headers({'Authorization': 'Bearer ' + JSON.parse(authResult.accessToken)});
        this.userInfoAutho0Request(url, headers);
 
        /*

@@ -270,7 +270,7 @@ var AuthService = (function () {
                 _this.setSession(authResult);
                 _this.router.navigate(['/home']);
                 var url = 'https://pinterest-clone.auth0.com/userinfo';
-                var headers = new Headers({ 'Authorization': 'Bearer ' + authResult.accessToken });
+                var headers = new Headers({ 'Authorization': 'Bearer ' + JSON.parse(authResult.accessToken) });
                 _this.userInfoAutho0Request(url, headers);
                 /*
                 let url = "https://auth0_domain/userinfo";
