@@ -34,20 +34,10 @@ export class AuthService {
         this.setSession(authResult);
        this.router.navigate(['/home']);
 
-       const url = 'https://pinterest-clone.auth0.com/userinfo';
-       const token = localStorage.getItem("accessToken");
-       const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-       this.http.get(url, { headers }).subscribe(data => {
-         console.log(data);
-       })
-
-
-       /*
-       let url = "https://auth0_domain/userinfo";
-       let headers = new Headers({'Authorization': 'Bearer ' + this.getToken()});
-       return this.http.get(url, {headers})
-       .map((res: Response) => res.json())
-       .subscribe(res => console.log('res'));*/
+       this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
+        // Now you have the user's information
+        console.log(user);
+      });
     
 
       } else if (err) {

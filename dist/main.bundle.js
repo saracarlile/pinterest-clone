@@ -264,18 +264,10 @@ var AuthService = (function () {
                 window.location.hash = '';
                 _this.setSession(authResult);
                 _this.router.navigate(['/home']);
-                var url = 'https://pinterest-clone.auth0.com/userinfo';
-                var token = localStorage.getItem("accessToken");
-                var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpHeaders */]().set('Authorization', "Bearer " + token);
-                _this.http.get(url, { headers: headers }).subscribe(function (data) {
-                    console.log(data);
+                _this.auth0.client.userInfo(authResult.accessToken, function (err, user) {
+                    // Now you have the user's information
+                    console.log(user);
                 });
-                /*
-                let url = "https://auth0_domain/userinfo";
-                let headers = new Headers({'Authorization': 'Bearer ' + this.getToken()});
-                return this.http.get(url, {headers})
-                .map((res: Response) => res.json())
-                .subscribe(res => console.log('res'));*/
             }
             else if (err) {
                 _this.router.navigate(['/home']);
