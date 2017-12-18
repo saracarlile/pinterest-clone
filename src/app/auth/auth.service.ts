@@ -20,7 +20,7 @@ export class AuthService {
 
   constructor(public router: Router, private httpClient: HttpClient) {}
 
-  public userInfo(id){
+  public user(id){
     this.httpClient.post("/auth/user-info/",
     {
         "id": id
@@ -57,7 +57,19 @@ export class AuthService {
         console.log(user);
         console.log(encodeURIComponent(user["sub"]));
         let userid = encodeURIComponent(user["sub"]);
-        this.userInfo(userid);
+        this.user(userid);
+        this.httpClient.post("/auth/user-info/",
+        {
+            "id": userid
+        })
+        .subscribe(
+            data => {
+                console.log("POST Request is successful ", data);
+            },
+            error => {
+                console.log("Error", error);
+            }
+        );   
     
       });
     

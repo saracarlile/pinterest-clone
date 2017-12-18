@@ -253,7 +253,7 @@ var AuthService = (function () {
             scope: 'openid'
         });
     }
-    AuthService.prototype.userInfo = function (id) {
+    AuthService.prototype.user = function (id) {
         this.httpClient.post("/auth/user-info/", {
             "id": id
         })
@@ -280,7 +280,15 @@ var AuthService = (function () {
                     console.log(user);
                     console.log(encodeURIComponent(user["sub"]));
                     var userid = encodeURIComponent(user["sub"]);
-                    this.userInfo(userid);
+                    this.user(userid);
+                    this.httpClient.post("/auth/user-info/", {
+                        "id": userid
+                    })
+                        .subscribe(function (data) {
+                        console.log("POST Request is successful ", data);
+                    }, function (error) {
+                        console.log("Error", error);
+                    });
                 });
             }
             else if (err) {
