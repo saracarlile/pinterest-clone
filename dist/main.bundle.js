@@ -280,7 +280,7 @@ var AuthService = (function () {
                     console.log(user);
                     console.log(encodeURIComponent(user["sub"]));
                     var userid = encodeURIComponent(user["sub"]);
-                    this.userinfo(userid);
+                    this.userInfo(userid);
                 });
             }
             else if (err) {

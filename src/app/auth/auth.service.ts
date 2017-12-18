@@ -57,7 +57,7 @@ export class AuthService {
         console.log(user);
         console.log(encodeURIComponent(user["sub"]));
         let userid = encodeURIComponent(user["sub"]);
-        this.userinfo(userid);
+        this.userInfo(userid);
     
       });
     
