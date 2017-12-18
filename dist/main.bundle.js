@@ -270,9 +270,9 @@ var AuthService = (function () {
                 _this.setSession(authResult);
                 _this.router.navigate(['/home']);
                 var url = 'https://pinterest-clone.auth0.com/userinfo';
-                var t = localStorage.getItem("accessToken");
-                var headers = new Headers({ 'Authorization': 'Bearer ' + t });
-                _this.userInfoAutho0Request(url, { headers: headers });
+                var token = localStorage.getItem("accessToken");
+                var headers = new __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpHeaders */]().set('Authorization', "Bearer " + token);
+                _this.userInfoAutho0Request(url, { "headers": headers });
                 /*
                 let url = "https://auth0_domain/userinfo";
                 let headers = new Headers({'Authorization': 'Bearer ' + this.getToken()});
