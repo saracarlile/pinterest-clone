@@ -35,7 +35,7 @@ export class AuthService {
         this.setSession(authResult);
        this.router.navigate(['/home']);
 
-       this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
+       this.auth0.client.userInfo(authResult.accessToken, (err, user) => {
         // Now you have the user's information
         //https://pinterest-clone.auth0.com/api/v2/users/twitter%7C17258519
         
@@ -45,12 +45,7 @@ export class AuthService {
         let userid = encodeURIComponent(user["sub"]);
         let body = { "id": userid};
 
-        const req = this.http.post('/auth/user-info', body);
-        req.subscribe();
-
-          
-
-    /*    this.httpClient.post("/auth/user-info/",
+        this.http.post("/auth/user-info/",
         {
             "id": userid
         })
@@ -61,7 +56,7 @@ export class AuthService {
             error => {
                 console.log("Error", error);
             }
-        );   */
+        );   
     
       });
     

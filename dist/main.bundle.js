@@ -271,20 +271,14 @@ var AuthService = (function () {
                     console.log(encodeURIComponent(user["sub"]));
                     var userid = encodeURIComponent(user["sub"]);
                     var body = { "id": userid };
-                    var req = this.http.post('/auth/user-info', body);
-                    req.subscribe();
-                    /*    this.httpClient.post("/auth/user-info/",
-                        {
-                            "id": userid
-                        })
-                        .subscribe(
-                            data => {
-                                console.log("POST Request is successful ", data);
-                            },
-                            error => {
-                                console.log("Error", error);
-                            }
-                        );   */
+                    _this.http.post("/auth/user-info/", {
+                        "id": userid
+                    })
+                        .subscribe(function (data) {
+                        console.log("POST Request is successful ", data);
+                    }, function (error) {
+                        console.log("Error", error);
+                    });
                 });
             }
             else if (err) {
