@@ -20,8 +20,6 @@ export class AuthService {
 
   constructor(public router: Router, private http: HttpClient) {}
 
-  private accessToken: string;
-
   private getUserInfo(token) {
       
 
@@ -36,14 +34,12 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
 
         console.log(authResult);
-        this.accessToken = (<any>this).authResult.access_token;
-        console.log(this.accessToken);
 
         window.location.hash = '';
         this.setSession(authResult);
-       //this.router.navigate(['/home']);
+       this.router.navigate(['/home']);
       } else if (err) {
-       // this.router.navigate(['/home']);
+        this.router.navigate(['/home']);
         console.log(err);
       }
     }

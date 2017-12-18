@@ -263,14 +263,12 @@ var AuthService = (function () {
         this.auth0.parseHash(function (err, authResult) {
             if (authResult && authResult.accessToken && authResult.idToken) {
                 console.log(authResult);
-                _this.accessToken = _this.authResult.access_token;
-                console.log(_this.accessToken);
                 window.location.hash = '';
                 _this.setSession(authResult);
-                //this.router.navigate(['/home']);
+                _this.router.navigate(['/home']);
             }
             else if (err) {
-                // this.router.navigate(['/home']);
+                _this.router.navigate(['/home']);
                 console.log(err);
             }
         });
