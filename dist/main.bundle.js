@@ -241,9 +241,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AuthService = (function () {
-    function AuthService(router, httpClient) {
+    function AuthService(router, http) {
         this.router = router;
-        this.httpClient = httpClient;
+        this.http = http;
         this.auth0 = new __WEBPACK_IMPORTED_MODULE_3_auth0_js__["WebAuth"]({
             clientID: '2ckS5lR3W2a2yuJs5Fti5cbrKttmHiGf',
             domain: 'pinterest-clone.auth0.com',
@@ -270,14 +270,21 @@ var AuthService = (function () {
                     console.log(user);
                     console.log(encodeURIComponent(user["sub"]));
                     var userid = encodeURIComponent(user["sub"]);
-                    this.httpClient.post("/auth/user-info/", {
-                        "id": userid
-                    })
-                        .subscribe(function (data) {
-                        console.log("POST Request is successful ", data);
-                    }, function (error) {
-                        console.log("Error", error);
-                    });
+                    var body = { "id": userid };
+                    var req = this.http.post('/auth/user-info', body);
+                    req.subscribe();
+                    /*    this.httpClient.post("/auth/user-info/",
+                        {
+                            "id": userid
+                        })
+                        .subscribe(
+                            data => {
+                                console.log("POST Request is successful ", data);
+                            },
+                            error => {
+                                console.log("Error", error);
+                            }
+                        );   */
                 });
             }
             else if (err) {

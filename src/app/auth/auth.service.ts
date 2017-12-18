@@ -18,7 +18,7 @@ export class AuthService {
     scope: 'openid'
   });
 
-  constructor(public router: Router, private httpClient: HttpClient) {}
+  constructor(public router: Router, private http: HttpClient) {}
 
 
   public login(): void {
@@ -43,8 +43,14 @@ export class AuthService {
         console.log(user);
         console.log(encodeURIComponent(user["sub"]));
         let userid = encodeURIComponent(user["sub"]);
+        let body = { "id": userid};
 
-        this.httpClient.post("/auth/user-info/",
+        const req = this.http.post('/auth/user-info', body);
+        req.subscribe();
+
+          
+
+    /*    this.httpClient.post("/auth/user-info/",
         {
             "id": userid
         })
@@ -55,7 +61,7 @@ export class AuthService {
             error => {
                 console.log("Error", error);
             }
-        );   
+        );   */
     
       });
     
