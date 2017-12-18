@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
-import { HttpClient,  HttpHeaders  } from '@angular/common/http';
+import { HttpClient,  HttpHeaders, Response  } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {

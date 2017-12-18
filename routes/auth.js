@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 router.post('/user-info', function(req, res){
-    res.send("ok");
+    res.send(JSON.stringify({ a: 1 }, null, 3));
   });
 
 
