@@ -41,7 +41,7 @@ export class AuthService {
 
         window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/all-pins']);
       } else if (err) {
         this.router.navigate(['/home']);
         console.log(err);

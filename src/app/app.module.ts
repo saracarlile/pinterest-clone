@@ -13,13 +13,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 
 import { AuthService } from './auth/auth.service';
+import { HomeComponent } from './home/home.component';
 
 
 const appRoutes: Routes = [
   { path: 'all-pins', component: AllPinsComponent },
   { path: 'my-pins',      component: MyPinsComponent },
+  { path: 'home', component: HomeComponent },
   { path: '',
-    redirectTo: '/all-pins',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   { path: '**', component: PageNotFoundComponent }
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
     AppComponent,
     AllPinsComponent,
     MyPinsComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HomeComponent
   ],
   imports: [
     RouterModule.forRoot(
