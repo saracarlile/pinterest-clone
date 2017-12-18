@@ -269,6 +269,15 @@ var AuthService = (function () {
                     //https://pinterest-clone.auth0.com/api/v2/users/twitter%7C17258519
                     console.log(user);
                     console.log(encodeURIComponent(user["sub"]));
+                    var userid = encodeURIComponent(user["sub"]);
+                    this.http.post("/auth/user-info", {
+                        "id": userid
+                    })
+                        .subscribe(function (data) {
+                        console.log("POST Request is successful ", data);
+                    }, function (error) {
+                        console.log("Error", error);
+                    });
                 });
             }
             else if (err) {
