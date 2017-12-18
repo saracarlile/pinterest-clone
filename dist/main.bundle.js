@@ -253,16 +253,6 @@ var AuthService = (function () {
             scope: 'openid'
         });
     }
-    AuthService.prototype.user = function (id) {
-        this.httpClient.post("/auth/user-info/", {
-            "id": id
-        })
-            .subscribe(function (data) {
-            console.log("POST Request is successful ", data);
-        }, function (error) {
-            console.log("Error", error);
-        });
-    };
     AuthService.prototype.login = function () {
         this.auth0.authorize();
     };
@@ -280,7 +270,6 @@ var AuthService = (function () {
                     console.log(user);
                     console.log(encodeURIComponent(user["sub"]));
                     var userid = encodeURIComponent(user["sub"]);
-                    this.user(userid);
                     this.httpClient.post("/auth/user-info/", {
                         "id": userid
                     })
