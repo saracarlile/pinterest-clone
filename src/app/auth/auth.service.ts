@@ -20,6 +20,14 @@ export class AuthService {
 
   constructor(public router: Router, private http: HttpClient) {}
 
+  public userInfoAutho0Request (url, headers) {
+    this.http.get(url, headers).subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  
+
   public login(): void {
     this.auth0.authorize();
   }
@@ -34,10 +42,16 @@ export class AuthService {
         this.setSession(authResult);
        this.router.navigate(['/home']);
 
-       this.auth0.client.userInfo(authResult.accessToken, function(err, user) {
-        // Now you have the user's information
-        console.log(user);
-      });
+       let url = 'https://pinterest-clone.auth0.com/userinfo'
+       let headers = new Headers({'Authorization': 'Bearer ' + authResult.accessToken});
+       this.userInfoAutho0Request(url, headers);
+
+       /*
+       let url = "https://auth0_domain/userinfo";
+       let headers = new Headers({'Authorization': 'Bearer ' + this.getToken()});
+       return this.http.get(url, {headers})
+       .map((res: Response) => res.json())
+       .subscribe(res => console.log('res'));*/
     
 
       } else if (err) {

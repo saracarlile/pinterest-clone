@@ -253,6 +253,11 @@ var AuthService = (function () {
             scope: 'openid'
         });
     }
+    AuthService.prototype.userInfoAutho0Request = function (url, headers) {
+        this.http.get(url, headers).subscribe(function (data) {
+            console.log(data);
+        });
+    };
     AuthService.prototype.login = function () {
         this.auth0.authorize();
     };
@@ -264,10 +269,15 @@ var AuthService = (function () {
                 window.location.hash = '';
                 _this.setSession(authResult);
                 _this.router.navigate(['/home']);
-                _this.auth0.client.userInfo(authResult.accessToken, function (err, user) {
-                    // Now you have the user's information
-                    console.log(user);
-                });
+                var url = 'https://pinterest-clone.auth0.com/userinfo';
+                var headers = new Headers({ 'Authorization': 'Bearer ' + authResult.accessToken });
+                _this.userInfoAutho0Request(url, headers);
+                /*
+                let url = "https://auth0_domain/userinfo";
+                let headers = new Headers({'Authorization': 'Bearer ' + this.getToken()});
+                return this.http.get(url, {headers})
+                .map((res: Response) => res.json())
+                .subscribe(res => console.log('res'));*/
             }
             else if (err) {
                 _this.router.navigate(['/home']);
