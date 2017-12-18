@@ -41,12 +41,13 @@ export class AuthService {
 
         window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['/all-pins']);
+       //this.router.navigate(['/home']);
       } else if (err) {
-        this.router.navigate(['/home']);
+       // this.router.navigate(['/home']);
         console.log(err);
       }
-    });
+    }
+  );
   }
 
   private setSession(authResult): void {

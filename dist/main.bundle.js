@@ -267,10 +267,10 @@ var AuthService = (function () {
                 console.log(_this.accessToken);
                 window.location.hash = '';
                 _this.setSession(authResult);
-                _this.router.navigate(['/all-pins']);
+                //this.router.navigate(['/home']);
             }
             else if (err) {
-                _this.router.navigate(['/home']);
+                // this.router.navigate(['/home']);
                 console.log(err);
             }
         });
