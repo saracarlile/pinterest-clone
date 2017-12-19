@@ -1,6 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-#remove ignore rule later
+#custom rule
+secrets.txt
 
 
 # compiled output
