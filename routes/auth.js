@@ -16,7 +16,7 @@ router.post('/user-info', function (req, res) {
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
     console.log(body);
-    res.send(JSON.stringify(body))
+    res.send(body)
   });
 
 });
