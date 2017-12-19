@@ -7,8 +7,8 @@ url: 'https://pinterest-clone.auth0.com/oauth/token',
 headers: { 'content-type': 'application/json' },
 body: 
  { grant_type: 'client_credentials',
-   client_id: CLIENT_ID,
-   client_secret: CLIENT_SECRET,
+   client_id: process.env.CLIENT_ID,
+   client_secret: process.env.CLIENT_SECRET,
    audience: 'https://pinterest-clone.auth0.com/api/v2/' },
 json: true };
 
