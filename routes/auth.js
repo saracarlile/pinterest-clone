@@ -36,9 +36,7 @@ router.get('/use-token', function (req, res) {  // use token from user-info to g
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
 
-    console.log(body.name);
-    console.log(body.picture);
-    console.log(body.user_id);
+    console.log(body);
     res.send(body);
   });
 
