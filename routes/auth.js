@@ -24,8 +24,8 @@ router.post('/user-info', function (req, res) {
 
 router.get('/use-token', function (req, res) {
 
-  let token = req.body.token;
-  let id = req.body.id;
+  let token = req.query.token;
+  let id = req.query.id;
 
   var options = {
     method: 'GET',
