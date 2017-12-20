@@ -15,29 +15,10 @@ router.post('/user-info', function (req, res) {
   };
 
 
-
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
-
-
     console.log(body.access_token);
-    let token = 'Bearer ' + body.access_token;
-    console.log(token);
-    console.log('https://pinterest-clone.auth0.com/api/v2/users/' + id);
-
-    let apioptions = {
-      method: 'GET',
-      url:'https://pinterest-clone.auth0.com/api/v2/users/' + id,
-      headers: { 'authorization': token }
-    };
-
-    request(apioptions, function (error, response, body) {
-      if (error) throw new Error(error);
-      res.send(body);
-      console.log(body);
-    });
-
-
+    res.send(body);
   });
 
 });
