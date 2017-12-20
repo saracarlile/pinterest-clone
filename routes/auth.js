@@ -16,12 +16,12 @@ router.post('/user-info', function (req, res) {
   let options = { method: 'POST',
   url: 'https://pinterest-clone.auth0.com/oauth/token',
   headers: { 'content-type': 'application/json' },
-  body:  body, 
-  json: true };
+  body:  body};
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
   res.send(body);
+  console.log("AM I IN HERE???");
   console.log(body);
 });
 
