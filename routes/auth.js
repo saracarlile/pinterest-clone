@@ -28,7 +28,7 @@ router.post('/user-info', function (req, res) {
     let apioptions = {
       method: 'GET',
       url:'https://pinterest-clone.auth0.com/api/v2/users/' + id,
-      headers: { authorization: token }
+      headers: { 'authorization': token }
     };
 
     request(apioptions, function (error, response, body) {
