@@ -17,7 +17,6 @@ router.post('/user-info', function (req, res) {
 
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
-    console.log(body.access_token);
     res.send(body);
   });
 
@@ -37,6 +36,9 @@ router.post('/use-token', function (req, res) {
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
     res.send(body);
+    console.log("test");
+    console.log(token);
+    console.log(id);
     console.log(body);
   });
 
