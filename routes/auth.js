@@ -14,7 +14,8 @@ router.post('/user-info', function (req, res) {
     "client_secret": process.env.CLIENT_SECRET,
     "audience": "https://pinterest-clone.auth0.com/api/v2/",
     "grant_type": "client_credentials"
-  } };
+  }, 
+  json: true };
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
