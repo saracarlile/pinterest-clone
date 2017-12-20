@@ -3,7 +3,7 @@ var request = require("request");
 const router = express.Router();
 
 
-router.post('/user-info', function (req, res) {
+router.post('/user-info', function (req, res) {  //user info requests a token from auth0, which can then be used to query their API
 
   let id = req.body.Id;
 
@@ -22,7 +22,7 @@ router.post('/user-info', function (req, res) {
 
 });
 
-router.get('/use-token', function (req, res) {
+router.get('/use-token', function (req, res) {  // use token from user-info to get Twitter user profile info stored at auth0
 
   let token = req.query.token;
   let id = req.query.id;
@@ -36,10 +36,6 @@ router.get('/use-token', function (req, res) {
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
     res.send(body);
-    console.log("test");
-    console.log(token);
-    console.log(id);
-    console.log(body);
   });
 
 });
