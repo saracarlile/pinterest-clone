@@ -75,8 +75,8 @@ export class AuthService {
 
   public useToken(token): void {
 
-    let params: HttpParams = new HttpParams().set('token', token);
-
+    var params = new HttpParams();
+    params = params.append('token', token);
     params = params.append('id', this.userid);
 
     this.http.get("/auth/use-token/",

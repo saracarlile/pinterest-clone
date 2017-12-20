@@ -290,7 +290,8 @@ var AuthService = (function () {
         });
     };
     AuthService.prototype.useToken = function (token) {
-        var params = new __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpParams */]().set('token', token);
+        var params = new __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpParams */]();
+        params = params.append('token', token);
         params = params.append('id', this.userid);
         this.http.get("/auth/use-token/", {
             params: params
