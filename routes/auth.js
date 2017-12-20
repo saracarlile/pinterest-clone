@@ -23,5 +23,25 @@ router.post('/user-info', function (req, res) {
 
 });
 
+outer.post('/use-token', function (req, res) {
+
+  let token = req.body.token;
+  let id = req.body.id;
+
+  var options = {
+    method: 'GET',
+    url: 'https://pinterest-clone.auth0.com/api/v2/users/' + id,
+    headers: { authorization: 'Bearer ' + token }
+  };
+
+  request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+    res.send(body);
+    console.log(body);
+  });
+
+});
+
+
 
 module.exports = router;

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import * as auth0 from 'auth0-js';
-import { HttpClient,  HttpHeaders } from '@angular/common/http';
+import { HttpClient,  HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -19,6 +19,8 @@ export class AuthService {
   });
 
   constructor(public router: Router, private http: HttpClient) {}
+
+  public userid: string;
 
 
   public login(): void {
@@ -43,12 +45,11 @@ export class AuthService {
 
         console.log(user);
         console.log(encodeURIComponent(user["sub"]));
-        let userid = encodeURIComponent(user["sub"]);
-        let body = { "id": userid};
+        this.userid = encodeURIComponent(user["sub"]);
 
         this.http.post("/auth/user-info/",
         {
-            "id": userid
+            "id": this.userid
         })
         .subscribe(
             data => {
@@ -69,6 +70,26 @@ export class AuthService {
       }
     }
   );
+  }
+
+  public useToken(token): void {
+
+    let params: HttpParams = new HttpParams().set('token', token);
+
+    params = params.append('id', this.userid);
+
+    this.http.get("/auth/use-token/",
+    {
+        params
+    })
+    .subscribe(
+        data => {
+            console.log("GET Request is successful ", data);
+        },
+        error => {
+            console.log("Error", error);
+        }
+    );   
   }
 
   private setSession(authResult): void {

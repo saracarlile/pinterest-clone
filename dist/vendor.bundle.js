@@ -22245,7 +22245,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["_7" /* Version */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return HttpClientModule; });
 /* unused harmony export HttpClientXsrfModule */
 /* unused harmony export ɵinterceptingHandler */
-/* unused harmony export HttpParams */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return HttpParams; });
 /* unused harmony export HttpUrlEncodingCodec */
 /* unused harmony export HttpRequest */
 /* unused harmony export HttpErrorResponse */

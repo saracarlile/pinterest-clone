@@ -270,10 +270,9 @@ var AuthService = (function () {
                     //https://auth0.com/docs/api/management/v2/tokens
                     console.log(user);
                     console.log(encodeURIComponent(user["sub"]));
-                    var userid = encodeURIComponent(user["sub"]);
-                    var body = { "id": userid };
+                    _this.userid = encodeURIComponent(user["sub"]);
                     _this.http.post("/auth/user-info/", {
-                        "id": userid
+                        "id": _this.userid
                     })
                         .subscribe(function (data) {
                         console.log("POST Request is successful ", data);
@@ -287,6 +286,18 @@ var AuthService = (function () {
                 _this.router.navigate(['/home']);
                 console.log(err);
             }
+        });
+    };
+    AuthService.prototype.useToken = function (token) {
+        var params = new __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpParams */]().set('token', token);
+        params = params.append('id', this.userid);
+        this.http.get("/auth/use-token/", {
+            params: params
+        })
+            .subscribe(function (data) {
+            console.log("GET Request is successful ", data);
+        }, function (error) {
+            console.log("Error", error);
         });
     };
     AuthService.prototype.setSession = function (authResult) {
