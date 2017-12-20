@@ -293,6 +293,9 @@ var AuthService = (function () {
         var params = new __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpParams */]();
         params = params.append('token', token);
         params = params.append('id', this.userid);
+        console.log(params);
+        console.log(token);
+        console.log(this.userid);
         this.http.get("/auth/use-token/", {
             params: params
         })

@@ -78,6 +78,9 @@ export class AuthService {
     var params = new HttpParams();
     params = params.append('token', token);
     params = params.append('id', this.userid);
+    console.log(params);
+    console.log(token);
+    console.log(this.userid);
 
     this.http.get("/auth/use-token/",
     {
