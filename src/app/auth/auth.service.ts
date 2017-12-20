@@ -55,6 +55,7 @@ export class AuthService {
             data => {
                 console.log("POST Request is successful ", data);
                 console.log(data["access_token"]);
+                this.useToken(data["access_token"]);
             },
             error => {
                 console.log("Error", error);

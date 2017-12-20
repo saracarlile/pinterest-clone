@@ -277,6 +277,7 @@ var AuthService = (function () {
                         .subscribe(function (data) {
                         console.log("POST Request is successful ", data);
                         console.log(data["access_token"]);
+                        _this.useToken(data["access_token"]);
                     }, function (error) {
                         console.log("Error", error);
                     });
