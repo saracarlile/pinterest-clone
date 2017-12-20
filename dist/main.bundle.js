@@ -267,6 +267,7 @@ var AuthService = (function () {
                 _this.auth0.client.userInfo(authResult.accessToken, function (err, user) {
                     // Now you have the user's information
                     //https://pinterest-clone.auth0.com/api/v2/users/twitter%7C17258519
+                    //https://auth0.com/docs/api/management/v2/tokens
                     console.log(user);
                     console.log(encodeURIComponent(user["sub"]));
                     var userid = encodeURIComponent(user["sub"]);
@@ -276,6 +277,7 @@ var AuthService = (function () {
                     })
                         .subscribe(function (data) {
                         console.log("POST Request is successful ", data);
+                        console.log(data["access_token"]);
                     }, function (error) {
                         console.log("Error", error);
                     });
