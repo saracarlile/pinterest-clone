@@ -37,7 +37,10 @@ router.get('/use-token', function (req, res) {  // use token from user-info to g
     if (error) throw new Error(error);
 
     console.log(JSON.parse(body));
-
+    let parsed = (JSON.parse(body));
+    console.log(parsed.name);
+    console.log(parsed.picture); 
+    console.log(parsed.identities[0]["user_id"]);
     res.send(body);
   });
 
