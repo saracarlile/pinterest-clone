@@ -15,14 +15,12 @@ mongoose.Promise = global.Promise;
 
 const db = require('./config/db');
 
-/* connect to DB removed -- add later
+
 
 mongoose.connect(db.url, { useMongoClient: true })
   .then(() =>  console.log('connection successful'))
   .catch((err) => console.error(err));
   
-*/
-
 
 // Parsers for POST data
 app.use(bodyParser.json());
