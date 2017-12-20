@@ -23,7 +23,7 @@ router.post('/user-info', function (req, res) {
 
 });
 
-outer.post('/use-token', function (req, res) {
+router.post('/use-token', function (req, res) {
 
   let token = req.body.token;
   let id = req.body.id;
