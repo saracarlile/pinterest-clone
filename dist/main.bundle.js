@@ -301,6 +301,8 @@ var AuthService = (function () {
         })
             .subscribe(function (data) {
             console.log("GET Request is successful ", data);
+            var x = document.cookie; //this is just for testing purposes
+            console.log(x);
         }, function (error) {
             console.log("Error", error);
         });
@@ -323,9 +325,7 @@ var AuthService = (function () {
         this.http.post('/auth/logout', {
             login: 'foo',
             password: 'bar'
-        }).subscribe(function (data) {
-            console.log(data);
-        });
+        }).subscribe();
         this.router.navigate(['/']);
     };
     AuthService.prototype.isAuthenticated = function () {

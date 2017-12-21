@@ -87,8 +87,10 @@ export class AuthService {
         params
     })
     .subscribe(
-        data => {
-            console.log("GET Request is successful ", data);
+      data => {
+        console.log("GET Request is successful ", data);
+        var x = document.cookie;  //this is just for testing purposes
+        console.log(x);
         },
         error => {
             console.log("Error", error);
@@ -117,9 +119,7 @@ export class AuthService {
     this.http.post('/auth/logout', {
       login: 'foo',
       password: 'bar'
-    }).subscribe(data => {
-      console.log(data);
-    });
+    }).subscribe();
 
     this.router.navigate(['/']);
   }

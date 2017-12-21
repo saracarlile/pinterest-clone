@@ -18,8 +18,8 @@ router.post('/user-info', function (req, res) {  //user info requests a token fr
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
 
-    //This cookie also expires after 360000 ms from the time it is set.
-    res.cookie('name', 'express', { maxAge: 360000 });
+    //This cookie also expires after 3600000000 ms from the time it is set.
+    res.cookie('name', 'express', { maxAge: 3600000000 });
 
     res.send(body);
   });
