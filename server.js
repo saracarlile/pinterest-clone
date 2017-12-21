@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 
 const passport = require('passport');
 const session = require('express-session');
+var cookieParser = require('cookie-parser');
+
 
 const app = express();
 
@@ -36,6 +38,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(cookieParser());
 
 // Set our routes
 //app.use('/api', api); not sure if api routes will be used

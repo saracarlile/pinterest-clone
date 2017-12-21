@@ -17,6 +17,10 @@ router.post('/user-info', function (req, res) {  //user info requests a token fr
 
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
+    
+    //This cookie also expires after 360000 ms from the time it is set.
+    res.cookie(name, 'express', { maxAge: 360000 });
+
     res.send(body);
   });
 
@@ -40,7 +44,7 @@ router.get('/use-token', function (req, res) {  // use token from user-info to g
     let parsed = (JSON.parse(body));
     console.log(parsed.name);
     console.log(parsed.picture); 
-    console.log(parsed.identities[0]["user_id"]);
+    console.log(parsed.user_id);
     res.send(body);
   });
 
