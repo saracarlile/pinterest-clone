@@ -318,6 +318,14 @@ var AuthService = (function () {
         localStorage.removeItem('id_token');
         localStorage.removeItem('expires_at');
         // Go back to the home route
+        var x = document.cookie;
+        console.log(x);
+        this.http.post('/auth/logout', {
+            login: 'foo',
+            password: 'bar'
+        }).subscribe(function (data) {
+            console.log(data);
+        });
         this.router.navigate(['/']);
     };
     AuthService.prototype.isAuthenticated = function () {

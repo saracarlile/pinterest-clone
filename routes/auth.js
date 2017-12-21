@@ -51,5 +51,12 @@ router.get('/use-token', function (req, res) {  // use token from user-info to g
 });
 
 
+router.post('/logout', function (req, res) {  // clear custom cookie that indicates user is logged in
+  res.clearCookie('name');
+   res.send('cookie "name" cleared');
+});
+
+
+
 
 module.exports = router;
