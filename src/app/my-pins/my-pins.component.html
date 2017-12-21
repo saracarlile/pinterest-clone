@@ -1,26 +1,41 @@
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-sm-6">
 
     <h2>Manage Your Pins</h2>
-    
+
     <p class="lead">
       Add pins of images or deleting existing pins.
     </p>
 
-    <button class="btn btn-primary" (click)="addPin()">Add New Pin</button>
+    <button class="btn btn-primary" (click)="showAddPin()" *ngIf="hideAdd == false">Add New Pin</button>
 
-    <form style="margin-top: 20px">
+    <form *ngIf="hideAdd == true" style="margin-top: 20px">
       <div class="form-group">
         <label for="url">Url</label>
-        <input type="text" class="form-control" placeholder="Enter url to image you would like to pin">
+        <input type="text" class="form-control" [(ngModel)]="pinUrl"  placeholder="Enter url to image you would like to pin">
         <small class="form-text text-muted">Example url format: https://www.website.com/image.jpg</small>
       </div>
       <div class="form-group">
         <label for="description">Pin Name</label>
-        <input type="text" class="form-control" placeholder="Name/Description" maxlength="65">
+        <input type="text" class="form-control" placeholder="Name/Description" maxlength="65" [(ngModel)]="pinName">
         <small class="form-text text-muted">Name your pin or provide a short description of pin image.</small>
       </div>
-      <button type="button" class="btn btn-primary">Add Pin</button>
+      <button type="button" (click)="addPin()" class="btn btn-primary">Add Pin</button>
     </form>
   </div>
 </div>
+<div class="row">
+  <div class="col-sm-12">
+    <div *ngIf="myPins.length > 0">
+      <div *ngFor="let pin of myPins; let i = index" style="border: 1px solid grey;" class="col-sm-4">
+        <p>
+          <img src="{{pin.url}}" alt="my-pin" class="img-fluid">
+        </p>
+        <p>
+          Pin Name: {{pin.name}}
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>  
