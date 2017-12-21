@@ -25,8 +25,10 @@ export class MyPinsComponent implements OnInit {
   public addPin(): void {
     let name = this.pinName;
     let url = this.pinUrl;
+    console.log(name);
+    console.log(url);
 
-    this.myPins.push({"name": this.pinName, "url" : this.pinUrl});
+    this.myPins.push({"name": name, "url" : url});
     
     this.pinUrl = '';
     this.pinName = '';
