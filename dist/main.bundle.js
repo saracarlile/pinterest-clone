@@ -148,21 +148,23 @@ var AppComponent = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__("../../../platform-browser/esm5/platform-browser.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__all_pins_all_pins_component__ = __webpack_require__("../../../../../src/app/all-pins/all-pins.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__my_pins_my_pins_component__ = __webpack_require__("../../../../../src/app/my-pins/my-pins.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../src/app/page-not-found/page-not-found.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__auth_auth_service__ = __webpack_require__("../../../../../src/app/auth/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pins_service__ = __webpack_require__("../../../../../src/app/pins.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__all_pins_all_pins_component__ = __webpack_require__("../../../../../src/app/all-pins/all-pins.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__my_pins_my_pins_component__ = __webpack_require__("../../../../../src/app/my-pins/my-pins.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../src/app/page-not-found/page-not-found.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__auth_auth_service__ = __webpack_require__("../../../../../src/app/auth/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pins_service__ = __webpack_require__("../../../../../src/app/pins.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -176,14 +178,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 var appRoutes = [
-    { path: 'all-pins', component: __WEBPACK_IMPORTED_MODULE_5__all_pins_all_pins_component__["a" /* AllPinsComponent */] },
-    { path: 'my-pins', component: __WEBPACK_IMPORTED_MODULE_6__my_pins_my_pins_component__["a" /* MyPinsComponent */] },
-    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_10__home_home_component__["a" /* HomeComponent */] },
+    { path: 'all-pins', component: __WEBPACK_IMPORTED_MODULE_6__all_pins_all_pins_component__["a" /* AllPinsComponent */] },
+    { path: 'my-pins', component: __WEBPACK_IMPORTED_MODULE_7__my_pins_my_pins_component__["a" /* MyPinsComponent */] },
+    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_11__home_home_component__["a" /* HomeComponent */] },
     { path: '',
         redirectTo: '/home',
         pathMatch: 'full'
     },
-    { path: '**', component: __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */] }
+    { path: '**', component: __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */] }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -191,24 +193,25 @@ var AppModule = (function () {
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_5__all_pins_all_pins_component__["a" /* AllPinsComponent */],
-                __WEBPACK_IMPORTED_MODULE_6__my_pins_my_pins_component__["a" /* MyPinsComponent */],
-                __WEBPACK_IMPORTED_MODULE_7__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__home_home_component__["a" /* HomeComponent */]
+                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_6__all_pins_all_pins_component__["a" /* AllPinsComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__my_pins_my_pins_component__["a" /* MyPinsComponent */],
+                __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__home_home_component__["a" /* HomeComponent */]
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* RouterModule */].forRoot(appRoutes
+                __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* RouterModule */].forRoot(appRoutes
                 //   { enableTracing: true } // <-- debugging purposes only
                 ),
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_3__angular_common_http__["b" /* HttpClientModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["b" /* HttpClientModule */],
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_8__auth_auth_service__["a" /* AuthService */],
-                __WEBPACK_IMPORTED_MODULE_9__pins_service__["a" /* PinsService */]
+                __WEBPACK_IMPORTED_MODULE_9__auth_auth_service__["a" /* AuthService */],
+                __WEBPACK_IMPORTED_MODULE_10__pins_service__["a" /* PinsService */]
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* AppComponent */]]
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -421,7 +424,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/my-pins/my-pins.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-sm-6\">\n\n    <h2>Manage Your Pins</h2>\n\n    <p class=\"lead\">\n      Add pins of images or deleting existing pins.\n    </p>\n\n    <button class=\"btn btn-primary\" (click)=\"showAddPin()\" *ngIf=\"hideAdd == false\">Add New Pin</button>\n\n    <form *ngIf=\"hideAdd == true\" style=\"margin-top: 20px\">\n      <div class=\"form-group\">\n        <label for=\"url\">Url</label>\n        <input class=\"form-control\" [(ngModel)]=\"pinUrl\" name=\"pinUrl\"  placeholder=\"Enter url to image you would like to pin\" />\n        <small class=\"form-text text-muted\">Example url format: https://www.website.com/image.jpg</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"description\">Pin Name</label>\n        <input class=\"form-control\" placeholder=\"Name/Description\" maxlength=\"65\" name=\"pinName\" [(ngModel)]=\"pinName\" />\n        <small class=\"form-text text-muted\">Name your pin or provide a short description of pin image.</small>\n      </div>\n      <button type=\"button\" (click)=\"addPin()\" class=\"btn btn-primary\">Add Pin</button>\n    </form>\n  </div>\n</div>\n\n\n<div class=\"row\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"myPins.length > 0\">\n      <div *ngFor=\"let pin of myPins; let i = index\" style=\"border: 1px solid grey;\" class=\"col-sm-4\">\n        <p>\n          <img src=\"{{pin.url}}\" alt=\"my-pin\" class=\"img-fluid\">\n        </p>\n        <p>\n          Pin Name: {{pin.name}}\n        </p>\n      </div>\n\n    </div>\n  </div>\n</div>  "
+module.exports = "<div class=\"row\">\n  <div class=\"col-sm-6\">\n\n    <h2>Manage Your Pins</h2>\n\n    <p class=\"lead\">\n      Add pins of images or deleting existing pins.\n    </p>\n\n    <button class=\"btn btn-primary\" (click)=\"showAddPin()\" *ngIf=\"hideAdd == false\">Add New Pin</button>\n\n    <form *ngIf=\"hideAdd == true\" style=\"margin-top: 20px\">\n      <div class=\"form-group\">\n        <label for=\"url\">Url</label>\n        <input class=\"form-control\" [ngModel]=\"pinUrl\" name=\"pinUrl\"  placeholder=\"Enter url to image you would like to pin\" />\n        <small class=\"form-text text-muted\">Example url format: https://www.website.com/image.jpg</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"description\">Pin Name</label>\n        <input class=\"form-control\" placeholder=\"Name/Description\" maxlength=\"65\" name=\"pinName\" [ngModel]=\"pinName\" />\n        <small class=\"form-text text-muted\">Name your pin or provide a short description of pin image.</small>\n      </div>\n      <button type=\"button\" (click)=\"addPin()\" class=\"btn btn-primary\">Add Pin</button>\n    </form>\n  </div>\n</div>\n\n\n<div class=\"row\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"myPins.length > 0\">\n      <div *ngFor=\"let pin of myPins; let i = index\" style=\"border: 1px solid grey;\" class=\"col-sm-4\">\n        <p>\n          <img src=\"{{pin.url}}\" alt=\"my-pin\" class=\"img-fluid\">\n        </p>\n        <p>\n          Pin Name: {{pin.name}}\n        </p>\n      </div>\n\n    </div>\n  </div>\n</div>  "
 
 /***/ }),
 
@@ -601,7 +604,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 if (__WEBPACK_IMPORTED_MODULE_3__environments_environment__["a" /* environment */].production) {
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_12" /* enableProdMode */])();
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* enableProdMode */])();
 }
 Object(__WEBPACK_IMPORTED_MODULE_1__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_2__app_app_module__["a" /* AppModule */])
     .catch(function (err) { return console.log(err); });
