@@ -25,19 +25,15 @@
   </div>
 </div>
 
-
 <div class="row" style="margin-top: 20px">
   <div class="col-sm-12">
     <div *ngIf="myPins.length > 0">
-      <div *ngFor="let pin of myPins; let i = index" style="border: 1px solid grey;" class="col-sm-4">
-        <p>
-          <img src="{{pin.url}}" alt="my-pin" class="img-fluid">
-        </p>
-        <p>
-          Pin Name: {{pin.name}}
-        </p>
+      <div *ngFor="let pin of myPins; let i = index" style="border: 1px solid grey;" class="card">
+        <img class="card-img-top img-fluid" src="{{pin.url}}" alt="my-pin" class="img-fluid">
+        <div class="card-block">
+          <p class="card-text"> Pin Name: {{pin.name}}</p>
+        </div>
       </div>
-
     </div>
   </div>
-</div>  
+</div>
