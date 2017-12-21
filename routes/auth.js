@@ -90,7 +90,7 @@ router.post('/logout', function (req, res) {  // clear custom cookie that indica
   } 
 
    res.clearCookie('authenticated');
-   res.send('cookie "authenticated" cleared');
+   res.send('{"cookie": "cleared"}');
 });
 
 
