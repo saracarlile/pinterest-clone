@@ -2,7 +2,7 @@ const express = require('express');
 var request = require("request");
 const router = express.Router();
 var mongoose = require('mongoose');
-var user = require('../models/usermodel.js');
+var user = require('../../models/usermodel.js');
 var User = mongoose.model('User');
 mongoose.Promise = global.Promise;
 
