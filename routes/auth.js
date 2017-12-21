@@ -1,6 +1,10 @@
 const express = require('express');
 var request = require("request");
 const router = express.Router();
+var mongoose = require('mongoose');
+var user = require('../models/usermodel.js');
+var User = mongoose.model('User');
+mongoose.Promise = global.Promise;
 
 
 router.post('/user-info', function (req, res) {  //user info requests a token from auth0, which can then be used to query their API
@@ -19,7 +23,8 @@ router.post('/user-info', function (req, res) {  //user info requests a token fr
     if (error) throw new Error(error);
 
     //This cookie also expires after 3600000000 ms from the time it is set.
-    res.cookie('authenticated', 'yes', { maxAge: 3600000000 });
+    // cookie 'authenticated': 'yes' means user logged in, can now be checked at api end points
+    res.cookie('authenticated', 'yes', { maxAge: 3600000000 });  
 
     res.send(body);
   });
@@ -45,6 +50,29 @@ router.get('/use-token', function (req, res) {  // use token from user-info to g
     console.log(parsed.name);
     console.log(parsed.picture); 
     console.log(parsed.user_id);
+
+
+
+  User.findOne({ 'id': parsed.user_id }).exec(function (err, user) {
+    if (!user) { // if no user found ... user reated upon login
+      let person = new User({
+        name: parsed.name,
+        id: rparsed.user_id,
+        picture: parsed.picture
+      });
+      person.save(function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log('saved');
+        }
+      });
+    }
+    if (user) {
+      console.log(user);
+    }
+  });
+
     res.send(body);
   });
 
