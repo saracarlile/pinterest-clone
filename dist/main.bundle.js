@@ -303,6 +303,22 @@ var AuthService = (function () {
             console.log("GET Request is successful ", data);
             var x = document.cookie; //this is just for testing purposes
             console.log(x);
+            function getCookie(cname) {
+                var name = cname + "=";
+                var decodedCookie = decodeURIComponent(document.cookie);
+                var ca = decodedCookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ') {
+                        c = c.substring(1);
+                    }
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+            console.log(getCookie(x));
         }, function (error) {
             console.log("Error", error);
         });

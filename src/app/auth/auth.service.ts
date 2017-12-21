@@ -83,19 +83,38 @@ export class AuthService {
     console.log(this.userid);
 
     this.http.get("/auth/use-token/",
-    {
+      {
         params
-    })
-    .subscribe(
+      })
+      .subscribe(
       data => {
         console.log("GET Request is successful ", data);
         var x = document.cookie;  //this is just for testing purposes
         console.log(x);
-        },
-        error => {
-            console.log("Error", error);
+
+        function getCookie(cname) { //we create a function that returns the value of a specified cookie
+          var name = cname + "=";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+              c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+              return c.substring(name.length, c.length);
+            }
+          }
+          return "";
         }
-    );   
+
+        console.log(getCookie(x));
+
+      },
+      error => {
+        console.log("Error", error);
+      }
+      );
   }
 
   private setSession(authResult): void {
