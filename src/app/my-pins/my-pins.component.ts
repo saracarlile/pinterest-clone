@@ -26,11 +26,12 @@ export class MyPinsComponent implements OnInit {
     let name = this.pinName;
     let url = this.pinUrl;
 
-    this.myPins.push({"name": this.pinName, "url" : this.pinUrl})
+    this.myPins.push({"name": this.pinName, "url" : this.pinUrl});
     
     this.pinUrl = '';
     this.pinName = '';
     this.hideAdd = false;
+    console.log(this.myPins);
 
   }
 
