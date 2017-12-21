@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PinsService } from '../pins.service';
+
+
 
 @Component({
   selector: 'app-my-pins',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyPinsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public pins: PinsService) { }
+
+  public addPin(): void {
+    console.log('Add Pin')!
+  } 
 
   ngOnInit() {
   }

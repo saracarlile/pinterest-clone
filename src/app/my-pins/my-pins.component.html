@@ -1,3 +1,20 @@
-<p>
-  my-pins works!
+<h2>Manage Your Pins</h2>
+<p class="lead">
+  Add pins of images or deleting existing pins.
 </p>
+
+<button class="btn btn-primary" (click)="addPin()">Add New Pin</button>
+
+<form style="margin-top: 20px">
+  <div class="form-group">
+    <label for="url">Url</label>
+    <input type="text" class="form-control" placeholder="Enter url to image you would like to pin">
+    <small class="form-text text-muted">Example url format: https://www.bensound.com/bensound-img/betterdays.jpg</small>
+  </div>
+  <div class="form-group">
+    <label for="description">Pin Name</label>
+    <input type="text" class="form-control" placeholder="Name/Description" maxlength="65">
+    <small class="form-text text-muted">Name your pin or provide a short description of pin image.</small>
+  </div>
+  <button type="button" class="btn btn-primary">Add Pin</button>
+</form>

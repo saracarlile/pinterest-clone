@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 
 import { AuthService } from './auth/auth.service';
+import { PinsService } from './pins.service';
 import { HomeComponent } from './home/home.component';
 
 
@@ -45,7 +46,8 @@ const appRoutes: Routes = [
     HttpClientModule,
   ],
   providers: [
-    AuthService
+    AuthService,
+    PinsService 
   ],
   bootstrap: [AppComponent]
 })
