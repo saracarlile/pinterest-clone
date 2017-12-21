@@ -293,32 +293,11 @@ var AuthService = (function () {
         var params = new __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["c" /* HttpParams */]();
         params = params.append('token', token);
         params = params.append('id', this.userid);
-        console.log(params);
-        console.log(token);
-        console.log(this.userid);
         this.http.get("/auth/use-token/", {
             params: params
         })
             .subscribe(function (data) {
             console.log("GET Request is successful ", data);
-            var x = document.cookie; //this is just for testing purposes
-            console.log(x);
-            function getCookie(cname) {
-                var name = cname + "=";
-                var decodedCookie = decodeURIComponent(document.cookie);
-                var ca = decodedCookie.split(';');
-                for (var i = 0; i < ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ') {
-                        c = c.substring(1);
-                    }
-                    if (c.indexOf(name) == 0) {
-                        return c.substring(name.length, c.length);
-                    }
-                }
-                return "";
-            }
-            console.log(getCookie(x));
         }, function (error) {
             console.log("Error", error);
         });
@@ -336,12 +315,8 @@ var AuthService = (function () {
         localStorage.removeItem('id_token');
         localStorage.removeItem('expires_at');
         // Go back to the home route
-        var x = document.cookie;
-        console.log(x);
-        this.http.post('/auth/logout', {
-            login: 'foo',
-            password: 'bar'
-        }).subscribe();
+        this.http.post('/auth/logout', {}).subscribe(); //clear authenticated cookie server side
+        document.cookie = "authenticated=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; //delete authenticated cookie client side
         this.router.navigate(['/']);
     };
     AuthService.prototype.isAuthenticated = function () {

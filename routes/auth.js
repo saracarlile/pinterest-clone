@@ -19,7 +19,7 @@ router.post('/user-info', function (req, res) {  //user info requests a token fr
     if (error) throw new Error(error);
 
     //This cookie also expires after 3600000000 ms from the time it is set.
-    res.cookie('name', 'express', { maxAge: 3600000000 });
+    res.cookie('authenticated', 'yes', { maxAge: 3600000000 });
 
     res.send(body);
   });
@@ -52,8 +52,17 @@ router.get('/use-token', function (req, res) {  // use token from user-info to g
 
 
 router.post('/logout', function (req, res) {  // clear custom cookie that indicates user is logged in
-  res.clearCookie('name');
-   res.send('cookie "name" cleared');
+
+  var cookie = req.cookies.authenticated;  // read 'authenticated' cookie
+  console.log(cookie);
+  if (cookie === undefined)
+  {
+    res.redirect('/');
+    res.send('cookie "authenticated" does not exist');
+  } 
+
+   res.clearCookie('authenticated');
+   res.send('cookie "authenticated" cleared');
 });
 
 

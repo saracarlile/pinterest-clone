@@ -21,6 +21,7 @@ export class AuthService {
   constructor(public router: Router, private http: HttpClient) {}
 
   public userid: string;
+  public cookie: string;
 
 
   public login(): void {
@@ -78,9 +79,6 @@ export class AuthService {
     var params = new HttpParams();
     params = params.append('token', token);
     params = params.append('id', this.userid);
-    console.log(params);
-    console.log(token);
-    console.log(this.userid);
 
     this.http.get("/auth/use-token/",
       {
@@ -89,26 +87,6 @@ export class AuthService {
       .subscribe(
       data => {
         console.log("GET Request is successful ", data);
-        var x = document.cookie;  //this is just for testing purposes
-        console.log(x);
-
-        function getCookie(cname) { //we create a function that returns the value of a specified cookie
-          var name = cname + "=";
-          var decodedCookie = decodeURIComponent(document.cookie);
-          var ca = decodedCookie.split(';');
-          for (var i = 0; i < ca.length; i++) {
-            var c = ca[i];
-            while (c.charAt(0) == ' ') {
-              c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-              return c.substring(name.length, c.length);
-            }
-          }
-          return "";
-        }
-
-        console.log(getCookie(x));
 
       },
       error => {
@@ -132,13 +110,10 @@ export class AuthService {
     localStorage.removeItem('expires_at');
     // Go back to the home route
 
-    var x = document.cookie;
-    console.log(x);
 
-    this.http.post('/auth/logout', {
-      login: 'foo',
-      password: 'bar'
-    }).subscribe();
+    this.http.post('/auth/logout', {}).subscribe();  //clear authenticated cookie server side
+
+    document.cookie = "authenticated=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";  //delete authenticated cookie client side
 
     this.router.navigate(['/']);
   }
