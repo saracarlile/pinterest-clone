@@ -57,7 +57,7 @@ router.get('/use-token', function (req, res) {  // use token from user-info to g
     if (!user) { // if no user found ... user reated upon login
       let person = new User({
         name: parsed.name,
-        id: rparsed.user_id,
+        id: parsed.user_id,
         picture: parsed.picture
       });
       person.save(function (err) {
