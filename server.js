@@ -48,6 +48,8 @@ const auth = require('./routes/auth');
 
 app.use('/auth', auth);
 
+app.use('/pins', pin);
+
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
