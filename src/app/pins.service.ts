@@ -12,7 +12,7 @@ export class PinsService {
   public addPin(): void {
     
     
-    this.http.post("/add-pin",
+    this.http.post("/pin/add-pin",
         {
             "id": "twitter|235235"
         })

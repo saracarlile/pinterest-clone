@@ -575,7 +575,7 @@ var PinsService = (function () {
         this.http = http;
     }
     PinsService.prototype.addPin = function () {
-        this.http.post("/add-pin", {
+        this.http.post("/pin/add-pin", {
             "id": "twitter|235235"
         })
             .subscribe(function (data) {

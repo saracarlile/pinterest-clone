@@ -46,6 +46,8 @@ app.use(cookieParser());
 
 const auth = require('./routes/auth');
 
+const pin = require('./routes/pin');
+
 app.use('/auth', auth);
 
 app.use('/pins', pin);
