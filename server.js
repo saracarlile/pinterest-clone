@@ -50,7 +50,7 @@ const pin = require('./routes/pin');
 
 app.use('/auth', auth);
 
-app.use('/pins', pin);
+app.use('/pin', pin);
 
 
 // Catch all other routes and return the index file
