@@ -464,7 +464,7 @@ var MyPinsComponent = (function () {
         console.log(name);
         console.log(url);
         this.myPins.push({ "name": name, "url": url });
-        this.pins.addPin();
+        this.pins.addPin({ "name": name, "url": url });
         this.pinUrl = '';
         this.pinName = '';
         this.hideAdd = false;
@@ -575,10 +575,9 @@ var PinsService = (function () {
         this.router = router;
         this.http = http;
     }
-    PinsService.prototype.addPin = function () {
-        this.http.post("/pin/add-pin", {
-            "id": "twitter|235235"
-        })
+    PinsService.prototype.addPin = function (pinInfo) {
+        var body = pinInfo;
+        this.http.post("/pin/add-pin", body)
             .subscribe(function (data) {
             console.log("POST Request is successful ", data);
         }, function (error) {

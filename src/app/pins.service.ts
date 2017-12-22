@@ -9,13 +9,13 @@ export class PinsService {
 
   constructor(public router: Router, private http: HttpClient) { }
 
-  public addPin(): void {
+  public addPin(pinInfo): void {
+
+    const body = pinInfo;
     
     
     this.http.post("/pin/add-pin",
-        {
-            "id": "twitter|235235"
-        })
+        body)
         .subscribe(
             data => {
                 console.log("POST Request is successful ", data);

@@ -8,8 +8,32 @@ mongoose.Promise = global.Promise;
 
 router.post('/add-pin', function (req, res) {  //user info requests a token from auth0, which can then be used to query their API
 
-  let id = req.body.id;
-  res.send('{"response": "ok"}');
+  let pinName = req.body.name;
+  let pinUrl = req.body.url;
+
+  var cookie = req.cookies.authenticated;  // read 'authenticated' cookie, should contain userid
+  console.log(cookie);
+  if (cookie === undefined)
+  {
+    res.redirect('/');
+    res.send('{"Message": "cookie "authenticated" does not exist}');
+    return;
+  } 
+
+  let newPin= {
+    pinName: pinName,
+    pinUrl: pinUrl,
+    pinUser: cookie
+  }
+
+  console.log(newPin);
+  User.findOneAndUpdate({ 'id': cookie }, { $push: { 'pins': newPin } }).exec(function (err, result) {
+    res.send('{"message": "pin added!"}');
+  });
+
+
+
+
 
   
 

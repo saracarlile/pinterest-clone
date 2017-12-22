@@ -9,7 +9,7 @@ mongoose.Promise = global.Promise;
 
 router.post('/user-info', function (req, res) {  //user info requests a token from auth0, which can then be used to query their API
 
-  let id = req.body.Id;
+  let id = req.body.id;
 
   let options = {
     method: 'POST',
@@ -24,7 +24,7 @@ router.post('/user-info', function (req, res) {  //user info requests a token fr
 
     //This cookie also expires after 3600000000 ms from the time it is set.
     // cookie 'authenticated': 'yes' means user logged in, can now be checked at api end points
-    res.cookie('authenticated', 'yes', { maxAge: 3600000000 });  
+    res.cookie('authenticated', id, { maxAge: 3600000000 });  
 
     res.send(body);
   });
