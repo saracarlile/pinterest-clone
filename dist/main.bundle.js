@@ -464,6 +464,7 @@ var MyPinsComponent = (function () {
         console.log(name);
         console.log(url);
         this.myPins.push({ "name": name, "url": url });
+        this.pins.addPin();
         this.pinUrl = '';
         this.pinName = '';
         this.hideAdd = false;
