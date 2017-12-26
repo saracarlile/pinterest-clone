@@ -47,7 +47,7 @@ export class MyPinsComponent implements OnInit {
     console.log(name);
     console.log(url);
 
-    this.myPins.slice(i, 1);
+    this.myPins.splice(i, 1);
 
     this.pins.deletePin({"name": name, "url" : url});
     

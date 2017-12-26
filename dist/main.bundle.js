@@ -475,7 +475,7 @@ var MyPinsComponent = (function () {
         var url = this.myPins[i]["url"];
         console.log(name);
         console.log(url);
-        this.myPins.slice(i, 1);
+        this.myPins.splice(i, 1);
         this.pins.deletePin({ "name": name, "url": url });
         console.log(this.myPins);
     };
