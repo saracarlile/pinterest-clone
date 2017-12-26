@@ -73,7 +73,7 @@ router.get('/my-pins', function (req, res) {  // get all user's pins for My Pins
   }
 
   User.find({ 'id': idFromCookie }).exec(function (err, collection) {  // John will be test user
-    res.send(collection);
+    res.json(collection);
   });
 
 });
