@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 // Import HttpClientModule from @angular/common/http
 import {HttpClientModule} from '@angular/common/http';
 
+import 'rxjs/Rx';
+
 
 import { AppComponent } from './app.component';
 import { AllPinsComponent } from './all-pins/all-pins.component';

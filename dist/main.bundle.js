@@ -151,13 +151,14 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__all_pins_all_pins_component__ = __webpack_require__("../../../../../src/app/all-pins/all-pins.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__my_pins_my_pins_component__ = __webpack_require__("../../../../../src/app/my-pins/my-pins.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../src/app/page-not-found/page-not-found.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__auth_auth_service__ = __webpack_require__("../../../../../src/app/auth/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pins_service__ = __webpack_require__("../../../../../src/app/pins.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__all_pins_all_pins_component__ = __webpack_require__("../../../../../src/app/all-pins/all-pins.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__my_pins_my_pins_component__ = __webpack_require__("../../../../../src/app/my-pins/my-pins.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../src/app/page-not-found/page-not-found.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__auth_auth_service__ = __webpack_require__("../../../../../src/app/auth/auth.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pins_service__ = __webpack_require__("../../../../../src/app/pins.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__home_home_component__ = __webpack_require__("../../../../../src/app/home/home.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -177,15 +178,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var appRoutes = [
-    { path: 'all-pins', component: __WEBPACK_IMPORTED_MODULE_6__all_pins_all_pins_component__["a" /* AllPinsComponent */] },
-    { path: 'my-pins', component: __WEBPACK_IMPORTED_MODULE_7__my_pins_my_pins_component__["a" /* MyPinsComponent */] },
-    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_11__home_home_component__["a" /* HomeComponent */] },
+    { path: 'all-pins', component: __WEBPACK_IMPORTED_MODULE_7__all_pins_all_pins_component__["a" /* AllPinsComponent */] },
+    { path: 'my-pins', component: __WEBPACK_IMPORTED_MODULE_8__my_pins_my_pins_component__["a" /* MyPinsComponent */] },
+    { path: 'home', component: __WEBPACK_IMPORTED_MODULE_12__home_home_component__["a" /* HomeComponent */] },
     { path: '',
         redirectTo: '/home',
         pathMatch: 'full'
     },
-    { path: '**', component: __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */] }
+    { path: '**', component: __WEBPACK_IMPORTED_MODULE_9__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */] }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -193,11 +195,11 @@ var AppModule = (function () {
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */],
-                __WEBPACK_IMPORTED_MODULE_6__all_pins_all_pins_component__["a" /* AllPinsComponent */],
-                __WEBPACK_IMPORTED_MODULE_7__my_pins_my_pins_component__["a" /* MyPinsComponent */],
-                __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__home_home_component__["a" /* HomeComponent */]
+                __WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */],
+                __WEBPACK_IMPORTED_MODULE_7__all_pins_all_pins_component__["a" /* AllPinsComponent */],
+                __WEBPACK_IMPORTED_MODULE_8__my_pins_my_pins_component__["a" /* MyPinsComponent */],
+                __WEBPACK_IMPORTED_MODULE_9__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__home_home_component__["a" /* HomeComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_3__angular_router__["b" /* RouterModule */].forRoot(appRoutes
@@ -208,10 +210,10 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["b" /* HttpClientModule */],
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_9__auth_auth_service__["a" /* AuthService */],
-                __WEBPACK_IMPORTED_MODULE_10__pins_service__["a" /* PinsService */]
+                __WEBPACK_IMPORTED_MODULE_10__auth_auth_service__["a" /* AuthService */],
+                __WEBPACK_IMPORTED_MODULE_11__pins_service__["a" /* PinsService */]
             ],
-            bootstrap: [__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* AppComponent */]]
+            bootstrap: [__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* AppComponent */]]
         })
     ], AppModule);
     return AppModule;
@@ -480,7 +482,11 @@ var MyPinsComponent = (function () {
         console.log(this.myPins);
     };
     MyPinsComponent.prototype.ngOnInit = function () {
-        this.pins.getAllPins();
+        this.pins.getAllPins().subscribe(function (data) {
+            console.log("Get my pins is successful ", data);
+        }, function (error) {
+            console.log("Error", error);
+        });
     };
     MyPinsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -567,6 +573,10 @@ var PageNotFoundComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_filter__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/filter.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_catch__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/catch.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_observable_throw__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/throw.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_add_observable_forkJoin__ = __webpack_require__("../../../../rxjs/_esm5/add/observable/forkJoin.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -576,6 +586,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
+
+
 
 
 
@@ -604,12 +618,7 @@ var PinsService = (function () {
         });
     };
     PinsService.prototype.getAllPins = function () {
-        this.http.get("/pin/my-pins/")
-            .subscribe(function (data) {
-            console.log("GET Request is successful ", data);
-        }, function (error) {
-            console.log("Error", error);
-        });
+        return this.http.get('pins/my-pins');
     };
     PinsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
