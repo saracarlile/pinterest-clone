@@ -33,6 +33,7 @@
           <img class="card-img-top img-fluid" src="{{pin.url}}" alt="my-pin" class="img-fluid">
           <div class="card-block">
             <p class="card-text"> Pin Name: {{pin.name}}</p>
+            <p class="card-text"><button (click)="deletePin(i)" class="btn btn-primary">Delete Pin</button></p>
           </div>
         </div>
       </div>

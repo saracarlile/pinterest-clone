@@ -6,13 +6,13 @@ var User = mongoose.model('User');
 mongoose.Promise = global.Promise;
 
 
-router.post('/add-pin', function (req, res) {  //user info requests a token from auth0, which can then be used to query their API
+router.post('/add-pin', function (req, res) {  //add pin to user's wall
 
   let pinName = req.body.name;
   let pinUrl = req.body.url;
 
   let cookie = req.cookies.authenticated;  // read 'authenticated' cookie, should contain userid
-  console.log(cookie);
+
   let idFromCookie = decodeURIComponent(cookie);
   if (cookie === undefined)
   {
@@ -27,11 +27,37 @@ router.post('/add-pin', function (req, res) {  //user info requests a token from
     pinUser: idFromCookie
   }
 
-  console.log(newPin);
   User.findOneAndUpdate({ 'id': idFromCookie }, { $push: { 'pins': newPin } }).exec(function (err, result) {
     res.send('{"message": "pin added!"}');
   });
 
+});
+
+router.post('/delete-pin', function (req, res) {  //delete pin from user's wall
+
+  let pinName = req.body.name;
+  let pinUrl = req.body.url;
+
+  let cookie = req.cookies.authenticated;  // read 'authenticated' cookie, should contain userid
+
+  let idFromCookie = decodeURIComponent(cookie);  //decode url characters
+  if (cookie === undefined)
+  {
+    res.redirect('/');
+    res.send('{"Message": "cookie "authenticated" does not exist}');
+    return;
+  } 
+
+  let newPin= {
+    pinName: pinName,
+    pinUrl: pinUrl,
+    pinUser: idFromCookie
+  }
+
+
+  User.update({ 'id': idFromCookie }, { '$pull': { 'pins': { 'pinUrl': req.body.url } } }, { safe: true, multi: true }).exec(function (err, result) {
+    res.send('{"message": "pin deleted!"}');
+  });
 
 });
 

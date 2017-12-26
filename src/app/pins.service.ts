@@ -24,8 +24,23 @@ export class PinsService {
                 console.log("Error", error);
             }
         );  
+  }
 
+  public deletePin(pinInfo): void {
 
+    const body = pinInfo;
+    
+    
+    this.http.post("/pin/delete-pin",
+        body)
+        .subscribe(
+            data => {
+                console.log("POST Request is successful ", data);
+            },
+            error => {
+                console.log("Error", error);
+            }
+        );  
   }
   
 

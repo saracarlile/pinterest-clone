@@ -39,6 +39,22 @@ export class MyPinsComponent implements OnInit {
 
   }
 
+  public deletePin(i): void {
+
+    let name = this.myPins[i]["name"];
+
+    let url = this.myPins[i]["url"];
+    console.log(name);
+    console.log(url);
+
+    this.myPins.slice(i, 1);
+
+    this.pins.addPin({"name": name, "url" : url});
+    
+    console.log(this.myPins);
+
+  }
+
   ngOnInit() {
   }
 
