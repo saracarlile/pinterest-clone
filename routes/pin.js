@@ -11,8 +11,9 @@ router.post('/add-pin', function (req, res) {  //user info requests a token from
   let pinName = req.body.name;
   let pinUrl = req.body.url;
 
-  var cookie = req.cookies.authenticated;  // read 'authenticated' cookie, should contain userid
+  let cookie = req.cookies.authenticated;  // read 'authenticated' cookie, should contain userid
   console.log(cookie);
+  let idFromCookie = decodeURIComponent(cookie);
   if (cookie === undefined)
   {
     res.redirect('/');
@@ -23,19 +24,13 @@ router.post('/add-pin', function (req, res) {  //user info requests a token from
   let newPin= {
     pinName: pinName,
     pinUrl: pinUrl,
-    pinUser: cookie
+    pinUser: idFromCookie
   }
 
   console.log(newPin);
-  User.findOneAndUpdate({ 'id': cookie }, { $push: { 'pins': newPin } }).exec(function (err, result) {
+  User.findOneAndUpdate({ 'id': idFromCookie }, { $push: { 'pins': newPin } }).exec(function (err, result) {
     res.send('{"message": "pin added!"}');
   });
-
-
-
-
-
-  
 
 
 });
