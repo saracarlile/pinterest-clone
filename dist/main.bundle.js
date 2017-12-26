@@ -480,6 +480,7 @@ var MyPinsComponent = (function () {
         console.log(this.myPins);
     };
     MyPinsComponent.prototype.ngOnInit = function () {
+        this.pins.getAllPins();
     };
     MyPinsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -598,6 +599,14 @@ var PinsService = (function () {
         this.http.post("/pin/delete-pin", body)
             .subscribe(function (data) {
             console.log("POST Request is successful ", data);
+        }, function (error) {
+            console.log("Error", error);
+        });
+    };
+    PinsService.prototype.getAllPins = function () {
+        this.http.get("/pin/my-pins/")
+            .subscribe(function (data) {
+            console.log("GET Request is successful ", data);
         }, function (error) {
             console.log("Error", error);
         });

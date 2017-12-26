@@ -42,6 +42,20 @@ export class PinsService {
             }
         );  
   }
+
+  public getAllPins(): void {
+      
+    this.http.get("/pin/my-pins/")
+      .subscribe(
+      data => {
+        console.log("GET Request is successful ", data);
+
+      },
+      error => {
+        console.log("Error", error);
+      }
+      );
+  }
   
 
 }

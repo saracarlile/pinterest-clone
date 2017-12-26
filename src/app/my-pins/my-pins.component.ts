@@ -56,6 +56,7 @@ export class MyPinsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.pins.getAllPins();
   }
 
 }
