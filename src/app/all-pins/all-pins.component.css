@@ -33,8 +33,8 @@
   
   @media (min-width: 75em) {
       .card-columns {
-          -webkit-column-count: 5;
-          -moz-column-count: 5;
-          column-count: 5;
+          -webkit-column-count: 8;
+          -moz-column-count: 8;
+          column-count: 8;
       }
   }
