@@ -2,6 +2,13 @@
   max-width: 319px;
 }
 
+#target {
+    background: transparent;
+    border: none !important;
+    font-size:0;
+    max-width: 3px;
+}
+
 @media (min-width: 34em) {
     .card-columns {
         -webkit-column-count: 2;
