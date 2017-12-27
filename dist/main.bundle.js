@@ -618,7 +618,7 @@ var PinsService = (function () {
         });
     };
     PinsService.prototype.getAllPins = function () {
-        return this.http.get('pins/my-pins');
+        return this.http.get('/pin/my-pins');
     };
     PinsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
