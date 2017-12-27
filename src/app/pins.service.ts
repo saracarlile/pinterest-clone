@@ -17,8 +17,7 @@ export class PinsService {
 
   public addPin(pinInfo): void {
 
-    const body = pinInfo;
-    
+    const body = pinInfo;   
     
     this.http.post("/pin/add-pin",
         body)
