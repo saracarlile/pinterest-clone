@@ -11,7 +11,7 @@
           <img class="card-img-top img-fluid" src="{{pin.pinUrl}}" alt="my-pin" class="img-fluid" onerror='this.src="https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png"'>
           <!--You need to define onerror attribute in the image elements and perform image replace operation.  http://makitweb.com/check-broken-image-jquery-ajax/ -->
           <div class="card-block">
-            <p class="card-text"> Pin Name: {{pin.pinName}}</p>
+            <h4 class="card-title">{{pin.pinName}}</h4>
             <p class="card-text"><button (click)="deletePin(i)" class="delete-btn">Delete Pin</button></p>
           </div>
         </div>
