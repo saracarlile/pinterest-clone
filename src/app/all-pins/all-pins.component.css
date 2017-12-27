@@ -1,6 +1,10 @@
 .card-columns .card {
     max-width: 319px;
   }
+
+  .card-columns {
+        column-gap: 10px!important;
+    }
   
   
   @media (min-width: 34em) {
