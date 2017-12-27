@@ -426,7 +426,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/my-pins/my-pins.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-sm-6\">\n\n    <h2>Manage Your Pins</h2>\n\n    <p class=\"lead\">\n      Add pins of images or deleting existing pins.\n    </p>\n\n    <button class=\"btn btn-primary\" (click)=\"showAddPin()\" *ngIf=\"hideAdd == false\">Add New Pin</button>\n\n    <form *ngIf=\"hideAdd == true\" style=\"margin-top: 20px\">\n      <div class=\"form-group\">\n        <label for=\"url\">Url</label>\n        <input class=\"form-control\" [(ngModel)]=\"newPinUrl\" name=\"pinUrl\"  placeholder=\"Enter url to image you would like to pin\" />\n        <small class=\"form-text text-muted\">Example url format: https://www.website.com/image.jpg</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"description\">Pin Name</label>\n        <input class=\"form-control\" placeholder=\"Name/Description\" maxlength=\"65\" name=\"pinName\" [(ngModel)]=\"newPinName\" />\n        <small class=\"form-text text-muted\">Name your pin or provide a short description of pin image.</small>\n      </div>\n      <button type=\"button\" (click)=\"addPin()\" class=\"btn btn-primary\">Add Pin</button>\n    </form>\n  </div>\n</div>\n\n<div class=\"row\" style=\"margin-top: 20px\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"myPins.length > 0\">\n      <div class=\"card-columns\">\n        <div *ngFor=\"let pin of myPins; let i = index\" style=\"border: 1px solid grey; padding: 10px;\" class=\"card\">\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my-pin\" class=\"img-fluid\">\n          <div class=\"card-block\">\n            <p class=\"card-text\"> Pin Name: {{pin.pinName}}</p>\n            <p class=\"card-text\"><button (click)=\"deletePin(i)\" class=\"btn btn-primary\">Delete Pin</button></p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<button id=\"target\"></button>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-sm-6\">\n\n    <h2>Manage Your Pins</h2>\n\n    <p class=\"lead\">\n      Add pins of images or deleting existing pins.\n    </p>\n\n    <button class=\"btn btn-primary\" (click)=\"showAddPin()\" *ngIf=\"hideAdd == false\">Add New Pin</button>\n\n    <form *ngIf=\"hideAdd == true\" style=\"margin-top: 20px\">\n      <div class=\"form-group\">\n        <label for=\"url\">Url</label>\n        <input class=\"form-control\" [(ngModel)]=\"newPinUrl\" name=\"pinUrl\"  placeholder=\"Enter url to image you would like to pin\" />\n        <small class=\"form-text text-muted\">Example url format: https://www.website.com/image.jpg</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"description\">Pin Name</label>\n        <input class=\"form-control\" placeholder=\"Name/Description\" maxlength=\"65\" name=\"pinName\" [(ngModel)]=\"newPinName\" />\n        <small class=\"form-text text-muted\">Name your pin or provide a short description of pin image.</small>\n      </div>\n      <button type=\"button\" (click)=\"addPin()\" class=\"btn btn-primary\">Add Pin</button>\n    </form>\n  </div>\n</div>\n\n<div class=\"row\" style=\"margin-top: 20px\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"myPins.length > 0\">\n      <div class=\"card-columns\">\n        <div *ngFor=\"let pin of myPins; let i = index\" style=\"border: 1px solid grey; padding: 10px;\" class=\"card\">\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my-pin\" class=\"img-fluid\" onerror='this.src=\"https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png\"'>\n          <div class=\"card-block\">\n            <p class=\"card-text\"> Pin Name: {{pin.pinName}}</p>\n            <p class=\"card-text\"><button (click)=\"deletePin(i)\" class=\"btn btn-primary\">Delete Pin</button></p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -471,33 +471,6 @@ var MyPinsComponent = (function () {
         this.newPinName = '';
         this.hideAdd = false;
         console.log(this.myPins);
-        $("#target").click(function () {
-            // Looping through all image elements from http://makitweb.com/check-broken-image-jquery-ajax/
-            $("img").each(function () {
-                var element = $(this);
-                $.ajax({
-                    url: $(this).attr('src'),
-                    type: 'get',
-                    async: false,
-                    error: function (response) {
-                        var replace_src = "https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png";
-                        // Again check the default image
-                        $.ajax({
-                            url: replace_src,
-                            type: 'get',
-                            async: false,
-                            success: function () {
-                                $(element).attr('src', replace_src);
-                            },
-                            error: function (response) {
-                                $(element).hide();
-                            }
-                        });
-                    }
-                });
-            });
-        });
-        $("#target").trigger("click"); // target 'hidden' button for click event to trigger jquery broken image link check (above)
     };
     MyPinsComponent.prototype.deletePin = function (i) {
         var name = this.myPins[i]["pinName"];

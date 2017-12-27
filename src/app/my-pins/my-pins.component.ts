@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PinsService } from '../pins.service';
 
 
-declare var jquery:any;
-declare var $ :any;
+
 
 
 @Component({
@@ -42,37 +41,6 @@ export class MyPinsComponent implements OnInit {
 
 
 
-    $("#target").click(function () {
-      // Looping through all image elements from http://makitweb.com/check-broken-image-jquery-ajax/
-      $("img").each(function () {
-        var element = $(this);
-
-        $.ajax({
-          url: $(this).attr('src'),
-          type: 'get',
-          async: false,
-          error: function (response) {
-
-            var replace_src = "https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png";
-            // Again check the default image
-            $.ajax({
-              url: replace_src,
-              type: 'get',
-              async: false,
-              success: function () {
-                $(element).attr('src', replace_src);
-              },
-              error: function (response) {
-                $(element).hide();
-              }
-            });
-          }
-        });
-      });
-
-    });
-
-    $("#target").trigger("click");  // target 'hidden' button for click event to trigger jquery broken image link check (above)
 
   }
 
