@@ -29,7 +29,7 @@
   <div class="col-sm-12">
     <div *ngIf="myPins.length > 0">
       <div class="card-columns">
-        <div *ngFor="let pin of myPins; let i = index" style="border: 1px solid grey;" class="card">
+        <div *ngFor="let pin of myPins; let i = index" style="border: 1px solid grey; padding: 10px;" class="card">
           <img class="card-img-top img-fluid" src="{{pin.pinUrl}}" alt="my-pin" class="img-fluid">
           <div class="card-block">
             <p class="card-text"> Pin Name: {{pin.pinName}}</p>
