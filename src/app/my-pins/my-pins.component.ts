@@ -13,8 +13,8 @@ export class MyPinsComponent implements OnInit {
   constructor(public pins: PinsService) { }
 
   public hideAdd = false;
-  public pinUrl = '';  // pin url from input box
-  public pinName= '';  //pin url from input box
+  public newPinUrl = '';  // pin url from input box
+  public newPinName= '';  //pin url from input box
   public myPins = [];
 
   public showAddPin(): void {
@@ -23,17 +23,17 @@ export class MyPinsComponent implements OnInit {
   } 
 
   public addPin(): void {
-    let name = this.pinName;
-    let url = this.pinUrl;
+    let name = this.newPinName;
+    let url = this.newPinUrl;
     console.log(name);
     console.log(url);
 
-    this.myPins.push({"name": name, "url" : url});
+    this.myPins.push({"pinName": name, "pinUrl" : url});
 
     this.pins.addPin({"name": name, "url" : url});
     
-    this.pinUrl = '';
-    this.pinName = '';
+    this.newPinUrl = '';
+    this.newPinName = '';
     this.hideAdd = false;
     console.log(this.myPins);
 
@@ -41,9 +41,9 @@ export class MyPinsComponent implements OnInit {
 
   public deletePin(i): void {
 
-    let name = this.myPins[i]["name"];
+    let name = this.myPins[i]["pinName"];
 
-    let url = this.myPins[i]["url"];
+    let url = this.myPins[i]["pinUrl"];
     console.log(name);
     console.log(url);
 
@@ -64,6 +64,7 @@ export class MyPinsComponent implements OnInit {
         for(let i = 0; i < data[0]["pins"].length; i++){
           this.myPins.push(data[0]["pins"][i]);
         }
+        console.log(this.myPins);
       },
       error => {
         console.log("Error", error);

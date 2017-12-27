@@ -30,9 +30,9 @@
     <div *ngIf="myPins.length > 0">
       <div class="card-columns">
         <div *ngFor="let pin of myPins; let i = index" style="border: 1px solid grey;" class="card">
-          <img class="card-img-top img-fluid" src="{{pin.url}}" alt="my-pin" class="img-fluid">
+          <img class="card-img-top img-fluid" src="{{pin.pinUrl}}" alt="my-pin" class="img-fluid">
           <div class="card-block">
-            <p class="card-text"> Pin Name: {{pin.name}}</p>
+            <p class="card-text"> Pin Name: {{pin.pinName}}</p>
             <p class="card-text"><button (click)="deletePin(i)" class="btn btn-primary">Delete Pin</button></p>
           </div>
         </div>

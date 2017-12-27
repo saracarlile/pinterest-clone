@@ -426,7 +426,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/my-pins/my-pins.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-sm-6\">\n\n    <h2>Manage Your Pins</h2>\n\n    <p class=\"lead\">\n      Add pins of images or deleting existing pins.\n    </p>\n\n    <button class=\"btn btn-primary\" (click)=\"showAddPin()\" *ngIf=\"hideAdd == false\">Add New Pin</button>\n\n    <form *ngIf=\"hideAdd == true\" style=\"margin-top: 20px\">\n      <div class=\"form-group\">\n        <label for=\"url\">Url</label>\n        <input class=\"form-control\" [(ngModel)]=\"pinUrl\" name=\"pinUrl\"  placeholder=\"Enter url to image you would like to pin\" />\n        <small class=\"form-text text-muted\">Example url format: https://www.website.com/image.jpg</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"description\">Pin Name</label>\n        <input class=\"form-control\" placeholder=\"Name/Description\" maxlength=\"65\" name=\"pinName\" [(ngModel)]=\"pinName\" />\n        <small class=\"form-text text-muted\">Name your pin or provide a short description of pin image.</small>\n      </div>\n      <button type=\"button\" (click)=\"addPin()\" class=\"btn btn-primary\">Add Pin</button>\n    </form>\n  </div>\n</div>\n\n<div class=\"row\" style=\"margin-top: 20px\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"myPins.length > 0\">\n      <div class=\"card-columns\">\n        <div *ngFor=\"let pin of myPins; let i = index\" style=\"border: 1px solid grey;\" class=\"card\">\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.url}}\" alt=\"my-pin\" class=\"img-fluid\">\n          <div class=\"card-block\">\n            <p class=\"card-text\"> Pin Name: {{pin.name}}</p>\n            <p class=\"card-text\"><button (click)=\"deletePin(i)\" class=\"btn btn-primary\">Delete Pin</button></p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-sm-6\">\n\n    <h2>Manage Your Pins</h2>\n\n    <p class=\"lead\">\n      Add pins of images or deleting existing pins.\n    </p>\n\n    <button class=\"btn btn-primary\" (click)=\"showAddPin()\" *ngIf=\"hideAdd == false\">Add New Pin</button>\n\n    <form *ngIf=\"hideAdd == true\" style=\"margin-top: 20px\">\n      <div class=\"form-group\">\n        <label for=\"url\">Url</label>\n        <input class=\"form-control\" [(ngModel)]=\"pinUrl\" name=\"pinUrl\"  placeholder=\"Enter url to image you would like to pin\" />\n        <small class=\"form-text text-muted\">Example url format: https://www.website.com/image.jpg</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"description\">Pin Name</label>\n        <input class=\"form-control\" placeholder=\"Name/Description\" maxlength=\"65\" name=\"pinName\" [(ngModel)]=\"pinName\" />\n        <small class=\"form-text text-muted\">Name your pin or provide a short description of pin image.</small>\n      </div>\n      <button type=\"button\" (click)=\"addPin()\" class=\"btn btn-primary\">Add Pin</button>\n    </form>\n  </div>\n</div>\n\n<div class=\"row\" style=\"margin-top: 20px\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"myPins.length > 0\">\n      <div class=\"card-columns\">\n        <div *ngFor=\"let pin of myPins; let i = index\" style=\"border: 1px solid grey;\" class=\"card\">\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my-pin\" class=\"img-fluid\">\n          <div class=\"card-block\">\n            <p class=\"card-text\"> Pin Name: {{pin.pinName}}</p>\n            <p class=\"card-text\"><button (click)=\"deletePin(i)\" class=\"btn btn-primary\">Delete Pin</button></p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -452,8 +452,8 @@ var MyPinsComponent = (function () {
     function MyPinsComponent(pins) {
         this.pins = pins;
         this.hideAdd = false;
-        this.pinUrl = ''; // pin url from input box
-        this.pinName = ''; //pin url from input box
+        this.newPinUrl = ''; // pin url from input box
+        this.newPinName = ''; //pin url from input box
         this.myPins = [];
     }
     MyPinsComponent.prototype.showAddPin = function () {
@@ -461,20 +461,20 @@ var MyPinsComponent = (function () {
         console.log('Add Pin');
     };
     MyPinsComponent.prototype.addPin = function () {
-        var name = this.pinName;
-        var url = this.pinUrl;
+        var name = this.newPinName;
+        var url = this.newPinUrl;
         console.log(name);
         console.log(url);
-        this.myPins.push({ "name": name, "url": url });
+        this.myPins.push({ "pinName": name, "pinUrl": url });
         this.pins.addPin({ "name": name, "url": url });
-        this.pinUrl = '';
-        this.pinName = '';
+        this.newPinUrl = '';
+        this.newPinName = '';
         this.hideAdd = false;
         console.log(this.myPins);
     };
     MyPinsComponent.prototype.deletePin = function (i) {
-        var name = this.myPins[i]["name"];
-        var url = this.myPins[i]["url"];
+        var name = this.myPins[i]["pinName"];
+        var url = this.myPins[i]["pinUrl"];
         console.log(name);
         console.log(url);
         this.myPins.splice(i, 1);
@@ -489,6 +489,7 @@ var MyPinsComponent = (function () {
             for (var i = 0; i < data[0]["pins"].length; i++) {
                 _this.myPins.push(data[0]["pins"][i]);
             }
+            console.log(_this.myPins);
         }, function (error) {
             console.log("Error", error);
         });
