@@ -441,7 +441,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card-columns .card {\r\n  max-width: 319px;\r\n}\r\n\r\n\r\n@media (min-width: 34em) {\r\n    .card-columns {\r\n        -webkit-column-count: 2;\r\n        column-count: 2;\r\n    }\r\n}\r\n\r\n@media (min-width: 48em) {\r\n    .card-columns {\r\n        -webkit-column-count: 3;\r\n        column-count: 3;\r\n    }\r\n}\r\n\r\n@media (min-width: 62em) {\r\n    .card-columns {\r\n        -webkit-column-count: 4;\r\n        column-count: 4;\r\n    }\r\n}\r\n\r\n@media (min-width: 75em) {\r\n    .card-columns {\r\n        -webkit-column-count: 8;\r\n        column-count: 8;\r\n    }\r\n}", ""]);
+exports.push([module.i, ".card-columns .card {\r\n  max-width: 319px;\r\n}\r\n\r\n.card-columns {\r\n    -webkit-column-gap: 10px!important;\r\n            column-gap: 10px!important;\r\n}\r\n\r\n@media (min-width: 34em) {\r\n    .card-columns {\r\n        -webkit-column-count: 2;\r\n        column-count: 2;\r\n    }\r\n}\r\n\r\n@media (min-width: 48em) {\r\n    .card-columns {\r\n        -webkit-column-count: 3;\r\n        column-count: 3;\r\n    }\r\n}\r\n\r\n@media (min-width: 62em) {\r\n    .card-columns {\r\n        -webkit-column-count: 4;\r\n        column-count: 4;\r\n    }\r\n}\r\n\r\n@media (min-width: 75em) {\r\n    .card-columns {\r\n        -webkit-column-count: 8;\r\n        column-count: 8;\r\n    }\r\n}", ""]);
 
 // exports
 
