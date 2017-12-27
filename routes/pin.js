@@ -64,8 +64,10 @@ router.post('/delete-pin', function (req, res) {  //delete pin from user's wall
 router.get('/my-pins', function (req, res) {  // get all user's pins for My Pins view
 
   let cookie = req.cookies.authenticated;  // read 'authenticated' cookie, should contain userid
-
+  
   let idFromCookie = decodeURIComponent(cookie);  //decode url characters
+  console.log(idFromCookie);
+  console.log('did i get here?');
   if (cookie === undefined) {
     res.redirect('/');
     res.send('{"Message": "cookie "authenticated" does not exist}');
