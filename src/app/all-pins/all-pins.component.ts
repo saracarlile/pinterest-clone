@@ -20,7 +20,23 @@ export class AllPinsComponent implements OnInit {
         console.log("Get all pins is successful ", data);
         console.log(data.length);
         for(let j = 0; j < data.length; j++){
-            this.allPins.push(data[j]);
+            let userName = data[j].name;
+            let picture = data[j].picture;
+            let id = data[j].id;
+            for(let i = 0; i < data[j]["pins"].length; i++) {
+              let custPinObject = {
+                pinName: data[j]["pins"][i]["pinName"],
+                pinUrl: data[j]["pins"][i]["pinUrl"],
+                pinUser: data[j]["pins"][i]["pinUser"],
+                pinUserName: userName,
+                userId: id, 
+                userPicture: picture 
+              }
+
+              this.allPins.push(custPinObject);
+            }
+
+            
         }
 
         console.log(this.allPins);

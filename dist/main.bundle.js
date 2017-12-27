@@ -71,7 +71,20 @@ var AllPinsComponent = (function () {
             console.log("Get all pins is successful ", data);
             console.log(data.length);
             for (var j = 0; j < data.length; j++) {
-                _this.allPins.push(data[j]);
+                var userName = data[j].name;
+                var picture = data[j].picture;
+                var id = data[j].id;
+                for (var i = 0; i < data[j]["pins"].length; i++) {
+                    var custPinObject = {
+                        pinName: data[j]["pins"][i]["pinName"],
+                        pinUrl: data[j]["pins"][i]["pinUrl"],
+                        pinUser: data[j]["pins"][i]["pinUser"],
+                        pinUserName: userName,
+                        userId: id,
+                        userPicture: picture
+                    };
+                    _this.allPins.push(custPinObject);
+                }
             }
             console.log(_this.allPins);
         }, function (error) {
