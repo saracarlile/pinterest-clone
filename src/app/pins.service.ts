@@ -50,7 +50,7 @@ export class PinsService {
 
 
   public getAllPins(): Observable<any> {
-      return this.http.get('pins/my-pins');
+      return this.http.get('/pin/my-pins');
 
   }
 }

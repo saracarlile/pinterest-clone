@@ -79,7 +79,7 @@ router.get('/my-pins', function (req, res) {  // get all user's pins for My Pins
     
     console.log('i am type');
     console.log(typeof collection);
-    res.send(collection);
+    res.send(JSON.stringify(collection));
   });
 
 });
