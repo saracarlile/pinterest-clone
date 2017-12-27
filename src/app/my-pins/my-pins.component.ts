@@ -60,6 +60,10 @@ export class MyPinsComponent implements OnInit {
     this.pins.getAllPins().subscribe(
       data => {
         console.log("Get my pins is successful ", data);
+        console.log(data[0]["pins"].length);
+        for(let i = 0; i < data[0]["pins"].length; i++){
+          this.myPins.push(data[0]["pins"][i]);
+        }
       },
       error => {
         console.log("Error", error);
