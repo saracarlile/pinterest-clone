@@ -49,8 +49,13 @@ export class PinsService {
   }
 
 
-  public getAllPins(): Observable<any> {
+  public getMyPins(): Observable<any> {
       return this.http.get('/pin/my-pins');
 
   }
+
+  public getAllPins(): Observable<any> {
+      return this.http.get('/pin/all-pins');
+  }
+
 }

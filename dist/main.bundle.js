@@ -48,6 +48,7 @@ module.exports = "<p>\n  all-pins works!\n</p>\n"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AllPinsComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pins_service__ = __webpack_require__("../../../../../src/app/pins.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,10 +59,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var AllPinsComponent = (function () {
-    function AllPinsComponent() {
+    function AllPinsComponent(pins) {
+        this.pins = pins;
+        this.allPins = [];
     }
     AllPinsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.pins.getAllPins().subscribe(function (data) {
+            console.log("Get all pins is successful ", data);
+            console.log(data[0]["pins"].length);
+            for (var i = 0; i < data[0]["pins"].length; i++) {
+                _this.allPins.push(data[0]["pins"][i]);
+            }
+            console.log(_this.allPins);
+        }, function (error) {
+            console.log("Error", error);
+        });
     };
     AllPinsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -69,7 +84,7 @@ var AllPinsComponent = (function () {
             template: __webpack_require__("../../../../../src/app/all-pins/all-pins.component.html"),
             styles: [__webpack_require__("../../../../../src/app/all-pins/all-pins.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__pins_service__["a" /* PinsService */]])
     ], AllPinsComponent);
     return AllPinsComponent;
 }());
@@ -426,7 +441,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/my-pins/my-pins.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-sm-6\">\n\n    <h2>Manage Your Pins</h2>\n\n    <p class=\"lead\">\n      Add pins of images or deleting existing pins.\n    </p>\n\n    <button class=\"btn btn-primary\" (click)=\"showAddPin()\" *ngIf=\"hideAdd == false\">Add New Pin</button>\n\n    <form *ngIf=\"hideAdd == true\" style=\"margin-top: 20px\">\n      <div class=\"form-group\">\n        <label for=\"url\">Url</label>\n        <input class=\"form-control\" [(ngModel)]=\"newPinUrl\" name=\"pinUrl\"  placeholder=\"Enter url to image you would like to pin\" />\n        <small class=\"form-text text-muted\">Example url format: https://www.website.com/image.jpg</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"description\">Pin Name</label>\n        <input class=\"form-control\" placeholder=\"Name/Description\" maxlength=\"65\" name=\"pinName\" [(ngModel)]=\"newPinName\" />\n        <small class=\"form-text text-muted\">Name your pin or provide a short description of pin image.</small>\n      </div>\n      <button type=\"button\" (click)=\"addPin()\" class=\"btn btn-primary\">Add Pin</button>\n    </form>\n  </div>\n</div>\n\n<div class=\"row\" style=\"margin-top: 20px\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"myPins.length > 0\">\n      <div class=\"card-columns\">\n        <div *ngFor=\"let pin of myPins; let i = index\" style=\"border: 1px solid grey; padding: 10px;\" class=\"card\">\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my-pin\" class=\"img-fluid\" onerror='this.src=\"https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png\"'>\n          <div class=\"card-block\">\n            <p class=\"card-text\"> Pin Name: {{pin.pinName}}</p>\n            <p class=\"card-text\"><button (click)=\"deletePin(i)\" class=\"btn btn-primary\">Delete Pin</button></p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-sm-6\">\n\n    <h2>Manage Your Pins</h2>\n\n    <p class=\"lead\">\n      Add pins of images or deleting existing pins.\n    </p>\n\n    <button class=\"btn btn-primary\" (click)=\"showAddPin()\" *ngIf=\"hideAdd == false\">Add New Pin</button>\n\n    <form *ngIf=\"hideAdd == true\" style=\"margin-top: 20px\">\n      <div class=\"form-group\">\n        <label for=\"url\">Url</label>\n        <input class=\"form-control\" [(ngModel)]=\"newPinUrl\" name=\"pinUrl\"  placeholder=\"Enter url to image you would like to pin\" />\n        <small class=\"form-text text-muted\">Example url format: https://www.website.com/image.jpg</small>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"description\">Pin Name</label>\n        <input class=\"form-control\" placeholder=\"Name/Description\" maxlength=\"65\" name=\"pinName\" [(ngModel)]=\"newPinName\" />\n        <small class=\"form-text text-muted\">Name your pin or provide a short description of pin image.</small>\n      </div>\n      <button type=\"button\" (click)=\"addPin()\" class=\"btn btn-primary\">Add Pin</button>\n    </form>\n  </div>\n</div>\n\n<div class=\"row\" style=\"margin-top: 20px\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"myPins.length > 0\">\n      <div class=\"card-columns\">\n        <div *ngFor=\"let pin of myPins; let i = index\" style=\"border: 1px solid grey; padding: 10px;\" class=\"card\">\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my-pin\" class=\"img-fluid\" onerror='this.src=\"https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png\"'>\n          <!--You need to define onerror attribute in the image elements and perform image replace operation.  http://makitweb.com/check-broken-image-jquery-ajax/ -->\n          <div class=\"card-block\">\n            <p class=\"card-text\"> Pin Name: {{pin.pinName}}</p>\n            <p class=\"card-text\"><button (click)=\"deletePin(i)\" class=\"btn btn-primary\">Delete Pin</button></p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -483,7 +498,7 @@ var MyPinsComponent = (function () {
     };
     MyPinsComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.pins.getAllPins().subscribe(function (data) {
+        this.pins.getMyPins().subscribe(function (data) {
             console.log("Get my pins is successful ", data);
             console.log(data[0]["pins"].length);
             for (var i = 0; i < data[0]["pins"].length; i++) {
@@ -623,8 +638,11 @@ var PinsService = (function () {
             console.log("Error", error);
         });
     };
-    PinsService.prototype.getAllPins = function () {
+    PinsService.prototype.getMyPins = function () {
         return this.http.get('/pin/my-pins');
+    };
+    PinsService.prototype.getAllPins = function () {
+        return this.http.get('/pin/all-pins');
     };
     PinsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),

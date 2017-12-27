@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PinsService } from '../pins.service';
 
 @Component({
   selector: 'app-all-pins',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllPinsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public pins: PinsService) { }
+
+  public allPins = [];
+
 
   ngOnInit() {
+
+    this.pins.getAllPins().subscribe(
+      data => {
+        console.log("Get all pins is successful ", data);
+        console.log(data[0]["pins"].length);
+        for(let i = 0; i < data[0]["pins"].length; i++){
+          this.allPins.push(data[0]["pins"][i]);
+        }
+        console.log(this.allPins);
+      },
+      error => {
+        console.log("Error", error);
+      }
+    );
   }
 
 }

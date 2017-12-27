@@ -62,7 +62,7 @@ export class MyPinsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.pins.getAllPins().subscribe(
+    this.pins.getMyPins().subscribe(
       data => {
         console.log("Get my pins is successful ", data);
         console.log(data[0]["pins"].length);
