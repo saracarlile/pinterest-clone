@@ -1,3 +1,21 @@
 <p>
   all-pins works!
 </p>
+
+
+<div class="row" style="margin-top: 20px">
+  <div class="col-sm-12">
+    <div *ngIf="allPins.length > 0">
+      <div class="card-columns">
+        <div *ngFor="let pin of allPins; let i = index" style="border: 1px solid grey; padding: 10px;" class="card">
+          <img class="card-img-top img-fluid" src="{{pin.pinUrl}}" alt="my-pin" class="img-fluid" onerror='this.src="https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png"'>
+          <!--You need to define onerror attribute in the image elements and perform image replace operation.  http://makitweb.com/check-broken-image-jquery-ajax/ -->
+          <div class="card-block">
+            <p class="card-text"> Pin Name: {{pin.pinName}}</p>
+            <p class="card-text"><button (click)="deletePin(i)" class="btn btn-primary">Delete Pin</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

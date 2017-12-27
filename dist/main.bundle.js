@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/all-pins/all-pins.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  all-pins works!\n</p>\n"
+module.exports = "<p>\n  all-pins works!\n</p>\n\n\n<div class=\"row\" style=\"margin-top: 20px\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"allPins.length > 0\">\n      <div class=\"card-columns\">\n        <div *ngFor=\"let pin of allPins; let i = index\" style=\"border: 1px solid grey; padding: 10px;\" class=\"card\">\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my-pin\" class=\"img-fluid\" onerror='this.src=\"https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png\"'>\n          <!--You need to define onerror attribute in the image elements and perform image replace operation.  http://makitweb.com/check-broken-image-jquery-ajax/ -->\n          <div class=\"card-block\">\n            <p class=\"card-text\"> Pin Name: {{pin.pinName}}</p>\n            <p class=\"card-text\"><button (click)=\"deletePin(i)\" class=\"btn btn-primary\">Delete Pin</button></p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -69,9 +69,9 @@ var AllPinsComponent = (function () {
         var _this = this;
         this.pins.getAllPins().subscribe(function (data) {
             console.log("Get all pins is successful ", data);
-            console.log(data[0]["pins"].length);
-            for (var i = 0; i < data[0]["pins"].length; i++) {
-                _this.allPins.push(data[0]["pins"][i]);
+            console.log(data.length);
+            for (var j = 0; j < data.length; j++) {
+                _this.allPins.push(data[j]);
             }
             console.log(_this.allPins);
         }, function (error) {

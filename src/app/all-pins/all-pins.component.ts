@@ -18,10 +18,11 @@ export class AllPinsComponent implements OnInit {
     this.pins.getAllPins().subscribe(
       data => {
         console.log("Get all pins is successful ", data);
-        console.log(data[0]["pins"].length);
-        for(let i = 0; i < data[0]["pins"].length; i++){
-          this.allPins.push(data[0]["pins"][i]);
+        console.log(data.length);
+        for(let j = 0; j < data.length; j++){
+            this.allPins.push(data[j]);
         }
+
         console.log(this.allPins);
       },
       error => {
