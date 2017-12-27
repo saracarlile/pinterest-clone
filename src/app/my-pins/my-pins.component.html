@@ -29,7 +29,7 @@
   <div class="col-sm-12">
     <div *ngIf="myPins.length > 0">
       <div class="card-columns">
-        <div *ngFor="let pin of myPins; let i = index" style="border: 1px solid grey; padding: 10px;" class="card">
+        <div *ngFor="let pin of myPins; let i = index" style="border-radius: 0px; padding: 10px;" class="card">
           <img class="card-img-top img-fluid" src="{{pin.pinUrl}}" alt="my-pin" class="img-fluid" onerror='this.src="https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png"'>
           <!--You need to define onerror attribute in the image elements and perform image replace operation.  http://makitweb.com/check-broken-image-jquery-ajax/ -->
           <div class="card-block">
