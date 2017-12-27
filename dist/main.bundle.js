@@ -471,8 +471,7 @@ var MyPinsComponent = (function () {
         this.newPinName = '';
         this.hideAdd = false;
         console.log(this.myPins);
-        // Replace source
-        $('img').error(function () {
+        $("img").on('error', function () {
             $(this).attr('src', 'https://d30y9cdsu7xlg0.cloudfront.net/png/45592-200.png');
         });
     };
