@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PinsService } from '../pins.service';
 
 
+declare var jquery:any;
+declare var $ :any;
+
 
 @Component({
   selector: 'app-my-pins',
@@ -36,6 +39,11 @@ export class MyPinsComponent implements OnInit {
     this.newPinName = '';
     this.hideAdd = false;
     console.log(this.myPins);
+
+    // Replace source
+    $('img').error(function () {
+      $(this).attr('src', 'https://d30y9cdsu7xlg0.cloudfront.net/png/45592-200.png');
+    });
 
   }
 
