@@ -6,6 +6,10 @@
     padding: 0px;
 }
 
+.delete-btn:hover {
+    cursor: pointer;
+}
+
 .card-columns {
     column-gap: 10px!important;
 }
