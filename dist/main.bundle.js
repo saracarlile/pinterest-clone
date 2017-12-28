@@ -128,7 +128,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".nav-link:hover {\r\n    cursor: pointer;\r\n}", ""]);
 
 // exports
 
@@ -407,7 +407,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  home works!\n</p>\n"
+module.exports = "<div class=\"row\">\n    <div class=\"jumbotron\" style=\"background-color: #2ae4e3\">\n      <h1 class=\"display-3\">Pinterest Interest</h1>\n      <p class=\"lead\">\n        Check out this Pinterest-like website.  View pins from all users.  Register using your Twitter account to add your own pins.\n      </p>\n    </div>\n  </div>\n  "
 
 /***/ }),
 
