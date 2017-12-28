@@ -11,6 +11,14 @@ export class AllPinsComponent implements OnInit {
   constructor(public pins: PinsService) { }
 
   public allPins = [];
+  public filtered = false;
+  public filteredPins = [];
+
+  public filterPins(index): void {
+    let userId = this.allPins[index]["userId"];
+    this.filteredPins = this.allPins.filter(pin => pin["userId"] == userId);
+    this.filtered = true;
+  }
 
 
   ngOnInit() {

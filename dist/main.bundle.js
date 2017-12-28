@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/all-pins/all-pins.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-sm-6\">\n    <h1 class=\"bd-title\">All Pins</h1>\n    <p class=\"bd-lead\">\n      View pins from all users.  Click on a user's name to filter wall to only their pins.\n    </p>\n  </div>\n</div>\n\n<div class=\"row\" style=\"margin-top: 30px\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"allPins.length > 0\">\n      <div class=\"card-columns\">\n        <div *ngFor=\"let pin of allPins; let i = index\" style=\"border-radius: 0px; padding: 10px;\" class=\"card\">\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my pin\" class=\"img-fluid\" onerror='this.src=\"https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png\"'>\n          <!--You need to define onerror attribute in the image elements and perform image replace operation.  http://makitweb.com/check-broken-image-jquery-ajax/ -->\n          <div class=\"card-block\">\n            <h4 class=\"card-title\">{{pin.pinName}}</h4>\n            <p class=\"card-text\"><small class=\"text-muted\">Pinned by:</small></p>\n           <p class=\"card-text\" style=\"color: #2ae4e3; font-weight: bold; margin-top:-15px;\">{{pin.pinUserName}}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col-sm-6\">\n    <h1 class=\"bd-title\">All Pins</h1>\n    <p class=\"bd-lead\">\n      View pins from all users.  Click on a user's name to filter wall to only their pins.\n    </p>\n    <p *ngIf=\"filteredPins.length > 0 && filtered == false\">\n      <button class=\"btn btn-primary\" (click)=\"clearFilter()\">See All Pins</button>\n    </p>\n  </div>\n</div>\n\n<div class=\"row\" style=\"margin-top: 30px\">\n  <div class=\"col-sm-12\">\n    <div *ngIf=\"allPins.length > 0 && filtered == false\">\n      <div class=\"card-columns\">\n        <div *ngFor=\"let pin of allPins; let i = index\" style=\"border-radius: 0px; padding: 10px;\" class=\"card\">\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my pin\" class=\"img-fluid\" onerror='this.src=\"https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png\"'>\n          <!--You need to define onerror attribute in the image elements and perform image replace operation.  http://makitweb.com/check-broken-image-jquery-ajax/ -->\n          <div class=\"card-block\">\n            <h4 class=\"card-title\">{{pin.pinName}}</h4>\n            <p class=\"card-text\"><small class=\"text-muted\">Pinned by:</small></p>\n           <p class=\"card-text\" style=\"color: #2ae4e3; font-weight: bold; margin-top:-15px;\" (click)='filterPins(i)'>{{pin.pinUserName}}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div *ngIf=\"filteredPins.length > 0 && filtered == true\">\n      <div class=\"card-columns\">\n        <div *ngFor=\"let pin of filteredPins; let i = index\" style=\"border-radius: 0px; padding: 10px;\" class=\"card\">\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my pin\" class=\"img-fluid\" onerror='this.src=\"https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png\"'>\n          <!--You need to define onerror attribute in the image elements and perform image replace operation.  http://makitweb.com/check-broken-image-jquery-ajax/ -->\n          <div class=\"card-block\">\n            <h4 class=\"card-title\">{{pin.pinName}}</h4>\n            <p class=\"card-text\"><small class=\"text-muted\">Pinned by:</small></p>\n           <p class=\"card-text\" style=\"color: #2ae4e3; font-weight: bold; margin-top:-15px;\">{{pin.pinUserName}}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -64,7 +64,14 @@ var AllPinsComponent = (function () {
     function AllPinsComponent(pins) {
         this.pins = pins;
         this.allPins = [];
+        this.filtered = false;
+        this.filteredPins = [];
     }
+    AllPinsComponent.prototype.filterPins = function (index) {
+        var userId = this.allPins[index]["userId"];
+        this.filteredPins = this.allPins.filter(function (pin) { return pin["userId"] == userId; });
+        this.filtered = true;
+    };
     AllPinsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.pins.getAllPins().subscribe(function (data) {
