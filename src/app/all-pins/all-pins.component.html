@@ -1,12 +1,14 @@
 <div class="row">
   <div class="col-sm-6">
-    <h1 class="bd-title">All Pins</h1>
-    <p class="bd-lead">
-      View pins from all users.  Click on a user's name to filter wall to only their pins.
-    </p>
-    <p *ngIf="filteredPins.length > 0 && filtered == true">
-      <button class="btn btn-primary" (click)="clearFilter()">See All Pins</button>
-    </p>
+    <div class="card" style="background-color: #2ae4e3; padding: 10px;">
+      <h1 class="bd-title">All Pins</h1>
+      <p class="bd-lead">
+        View pins from all users. Click on a user's name to filter wall to only their pins.
+      </p>
+      <p *ngIf="filteredPins.length > 0 && filtered == true">
+        <button class="btn btn-primary" (click)="clearFilter()">See All Pins</button>
+      </p>
+    </div>
   </div>
 </div>
 
