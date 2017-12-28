@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-sm-6">
 
-    <h2>Manage Your Pins</h2>
+    <h1 class="bd-title">Manage Your Pins</h2>
 
-    <p class="lead">
+    <p class="bd-lead">
       Add pins of images or deleting existing pins.
     </p>
-
+    <p>
     <button class="btn btn-primary" (click)="showAddPin()" *ngIf="hideAdd == false">Add New Pin</button>
-
+    </p>
     <form *ngIf="hideAdd == true" style="margin-top: 20px">
       <div class="form-group">
         <label for="url">Url</label>
@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<div class="row" style="margin-top: 20px">
+<div class="row" style="margin-top: 30px;">
   <div class="col-sm-12">
     <div *ngIf="myPins.length > 0">
       <div class="card-columns">
