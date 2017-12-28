@@ -9,6 +9,10 @@
     padding: 0px;
 }
 
+.card-text-hover:hover {
+    cursor: pointer;
+}
+
 
   .card-columns {
         column-gap: 10px!important;
