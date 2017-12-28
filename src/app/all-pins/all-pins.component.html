@@ -4,7 +4,7 @@
     <p class="bd-lead">
       View pins from all users.  Click on a user's name to filter wall to only their pins.
     </p>
-    <p *ngIf="filteredPins.length > 0 && filtered == false">
+    <p *ngIf="filteredPins.length > 0 && filtered == true">
       <button class="btn btn-primary" (click)="clearFilter()">See All Pins</button>
     </p>
   </div>

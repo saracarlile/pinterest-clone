@@ -15,9 +15,17 @@ export class AllPinsComponent implements OnInit {
   public filteredPins = [];
 
   public filterPins(index): void {
+    console.log('filtered!');
     let userId = this.allPins[index]["userId"];
     this.filteredPins = this.allPins.filter(pin => pin["userId"] == userId);
     this.filtered = true;
+    console.log(this.filteredPins);
+    console.log(this.filtered);
+  }
+
+  public clearFilter(): void {
+    this.filtered = false;
+    this.filteredPins = [];
   }
 
 
