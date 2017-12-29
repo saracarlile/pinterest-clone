@@ -45,11 +45,8 @@ router.get('/use-token', function (req, res) {  // use token from user-info to g
   request(options, function (error, response, body) {
     if (error) throw new Error(error);
 
-    console.log(JSON.parse(body));
+
     let parsed = (JSON.parse(body));
-    console.log(parsed.name);
-    console.log(parsed.picture); 
-    console.log(parsed.user_id);
 
 
 
@@ -82,7 +79,7 @@ router.get('/use-token', function (req, res) {  // use token from user-info to g
 router.post('/logout', function (req, res) {  // clear custom cookie that indicates user is logged in
 
   var cookie = req.cookies.authenticated;  // read 'authenticated' cookie
-  console.log(cookie);
+
   if (cookie === undefined)
   {
     res.redirect('/');

@@ -32,7 +32,6 @@ export class AuthService {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
 
-        console.log(authResult);
 
         window.location.hash = '';
         this.setSession(authResult);
@@ -40,12 +39,10 @@ export class AuthService {
 
        this.auth0.client.userInfo(authResult.accessToken, (err, user) => {
         // Now you have the user's information
-        //https://pinterest-clone.auth0.com/api/v2/users/twitter%7C17258519
         //https://auth0.com/docs/api/management/v2/tokens
         
 
-        console.log(user);
-        console.log(encodeURIComponent(user["sub"]));
+      
         this.userid = encodeURIComponent(user["sub"]);
 
         this.http.post("/auth/user-info/",
@@ -54,8 +51,6 @@ export class AuthService {
         })
         .subscribe(
             data => {
-                console.log("POST Request is successful ", data);
-                console.log(data["access_token"]);
                 this.useToken(data["access_token"]);
             },
             error => {

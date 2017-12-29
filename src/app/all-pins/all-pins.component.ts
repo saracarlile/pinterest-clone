@@ -15,12 +15,10 @@ export class AllPinsComponent implements OnInit {
   public filteredPins = [];
 
   public filterPins(index): void {
-    console.log('filtered!');
+
     let userId = this.allPins[index]["userId"];
     this.filteredPins = this.allPins.filter(pin => pin["userId"] == userId);
     this.filtered = true;
-    console.log(this.filteredPins);
-    console.log(this.filtered);
   }
 
   public clearFilter(): void {
@@ -33,8 +31,7 @@ export class AllPinsComponent implements OnInit {
 
     this.pins.getAllPins().subscribe(
       data => {
-        console.log("Get all pins is successful ", data);
-        console.log(data.length);
+
         for(let j = 0; j < data.length; j++){
             let userName = data[j].name;
             let picture = data[j].picture;
@@ -55,7 +52,6 @@ export class AllPinsComponent implements OnInit {
             
         }
 
-        console.log(this.allPins);
       },
       error => {
         console.log("Error", error);

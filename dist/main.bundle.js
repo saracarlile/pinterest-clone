@@ -68,12 +68,9 @@ var AllPinsComponent = (function () {
         this.filteredPins = [];
     }
     AllPinsComponent.prototype.filterPins = function (index) {
-        console.log('filtered!');
         var userId = this.allPins[index]["userId"];
         this.filteredPins = this.allPins.filter(function (pin) { return pin["userId"] == userId; });
         this.filtered = true;
-        console.log(this.filteredPins);
-        console.log(this.filtered);
     };
     AllPinsComponent.prototype.clearFilter = function () {
         this.filtered = false;
@@ -82,8 +79,6 @@ var AllPinsComponent = (function () {
     AllPinsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.pins.getAllPins().subscribe(function (data) {
-            console.log("Get all pins is successful ", data);
-            console.log(data.length);
             for (var j = 0; j < data.length; j++) {
                 var userName = data[j].name;
                 var picture = data[j].picture;
@@ -100,7 +95,6 @@ var AllPinsComponent = (function () {
                     _this.allPins.push(custPinObject);
                 }
             }
-            console.log(_this.allPins);
         }, function (error) {
             console.log("Error", error);
         });
@@ -310,23 +304,17 @@ var AuthService = (function () {
         var _this = this;
         this.auth0.parseHash(function (err, authResult) {
             if (authResult && authResult.accessToken && authResult.idToken) {
-                console.log(authResult);
                 window.location.hash = '';
                 _this.setSession(authResult);
                 _this.router.navigate(['/home']);
                 _this.auth0.client.userInfo(authResult.accessToken, function (err, user) {
                     // Now you have the user's information
-                    //https://pinterest-clone.auth0.com/api/v2/users/twitter%7C17258519
                     //https://auth0.com/docs/api/management/v2/tokens
-                    console.log(user);
-                    console.log(encodeURIComponent(user["sub"]));
                     _this.userid = encodeURIComponent(user["sub"]);
                     _this.http.post("/auth/user-info/", {
                         "id": _this.userid
                     })
                         .subscribe(function (data) {
-                        console.log("POST Request is successful ", data);
-                        console.log(data["access_token"]);
                         _this.useToken(data["access_token"]);
                     }, function (error) {
                         console.log("Error", error);
@@ -468,7 +456,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/my-pins/my-pins.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-sm-12\">\r\n    <div class=\"card\" style=\"background-color: #2ae4e3; padding: 15px;\">\r\n      <h1 class=\"display-4\">Manage Your Pins</h1>\r\n      <p class=\"lead\">\r\n        Add pins of images or deleting existing pins.\r\n      </p>\r\n      <p>\r\n        <button class=\"btn btn-primary\" (click)=\"showAddPin()\" *ngIf=\"hideAdd == false\">Add New Pin</button>\r\n      </p>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-6\">\r\n    <form *ngIf=\"hideAdd == true\" style=\"margin-top: 20px\">\r\n      <div class=\"form-group\">\r\n        <label for=\"url\">Url</label>\r\n        <input class=\"form-control\" [(ngModel)]=\"newPinUrl\" name=\"pinUrl\" placeholder=\"Enter url to image you would like to pin\"\r\n        />\r\n        <small class=\"form-text text-muted\">Example url format: https://www.website.com/image.jpg</small>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"description\">Pin Name</label>\r\n        <input class=\"form-control\" placeholder=\"Name/Description\" maxlength=\"65\" name=\"pinName\" [(ngModel)]=\"newPinName\" />\r\n        <small class=\"form-text text-muted\">Name your pin or provide a short description of pin image.</small>\r\n      </div>\r\n      <button type=\"button\" (click)=\"addPin()\" class=\"btn btn-primary\">Add Pin</button>\r\n    </form>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" style=\"margin-top: 30px;\">\r\n  <div class=\"col-sm-12\">\r\n    <div *ngIf=\"myPins.length > 0\">\r\n      <div class=\"card-columns\">\r\n        <div *ngFor=\"let pin of myPins; let i = index\" style=\"border-radius: 0px; padding: 10px;\" class=\"card\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my-pin\" class=\"img-fluid\" onerror='this.src=\"https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png\"'>\r\n          <!--You need to define onerror attribute in the image elements and perform image replace operation.  http://makitweb.com/check-broken-image-jquery-ajax/ -->\r\n          <div class=\"card-block\">\r\n            <h4 class=\"card-title\">{{pin.pinName}}</h4>\r\n            <p class=\"card-text\"><button (click)=\"deletePin(i)\" class=\"delete-btn\">Delete Pin</button></p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-sm-12\">\r\n    <div class=\"card\" style=\"background-color: #2ae4e3; padding: 15px;\">\r\n      <h1 class=\"display-4\">Manage Your Pins</h1>\r\n      <p class=\"lead\">\r\n        Add pins of images or deleting existing pins.\r\n      </p>\r\n      <p>\r\n        <button class=\"btn btn-primary\" (click)=\"showAddPin()\" *ngIf=\"hideAdd == false\">Add New Pin</button>\r\n      </p>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-sm-6\">\r\n    <form *ngIf=\"hideAdd == true\" style=\"margin-top: 20px\">\r\n      <div class=\"form-group\">\r\n        <label for=\"url\">Url</label>\r\n        <input class=\"form-control\" [(ngModel)]=\"newPinUrl\" name=\"pinUrl\" placeholder=\"Enter url to image you would like to pin\"\r\n        />\r\n        <small class=\"form-text text-muted\">Example url format: https://www.website.com/image.jpg</small>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"description\">Pin Name</label>\r\n        <input class=\"form-control\" placeholder=\"Name/Description\" maxlength=\"65\" name=\"pinName\" [(ngModel)]=\"newPinName\" />\r\n        <small class=\"form-text text-muted\">Name your pin or provide a short description of pin image.</small>\r\n      </div>\r\n      <button type=\"button\" (click)=\"addPin()\" class=\"btn btn-primary\">Add Pin</button>\r\n      <button type=\"button\" (click)=\"cancelAddPin()\" class=\"btn btn-warning\">Cancel</button>\r\n    </form>\r\n  </div>\r\n</div>\r\n\r\n<div class=\"row\" style=\"margin-top: 30px;\">\r\n  <div class=\"col-sm-12\">\r\n    <div *ngIf=\"myPins.length > 0\">\r\n      <div class=\"card-columns\">\r\n        <div *ngFor=\"let pin of myPins; let i = index\" style=\"border-radius: 0px; padding: 10px;\" class=\"card\">\r\n          <img class=\"card-img-top img-fluid\" src=\"{{pin.pinUrl}}\" alt=\"my-pin\" class=\"img-fluid\" onerror='this.src=\"https://www.mylessonplanner.com/images/icons/DefaultIcon/png/256x256/MD-picture-broken-link.png\"'>\r\n          <!--You need to define onerror attribute in the image elements and perform image replace operation.  http://makitweb.com/check-broken-image-jquery-ajax/ -->\r\n          <div class=\"card-block\">\r\n            <h4 class=\"card-title\">{{pin.pinName}}</h4>\r\n            <p class=\"card-text\"><button (click)=\"deletePin(i)\" class=\"delete-btn\">Delete Pin</button></p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -500,38 +488,33 @@ var MyPinsComponent = (function () {
     }
     MyPinsComponent.prototype.showAddPin = function () {
         this.hideAdd = true;
-        console.log('Add Pin');
     };
     MyPinsComponent.prototype.addPin = function () {
         var name = this.newPinName;
         var url = this.newPinUrl;
-        console.log(name);
-        console.log(url);
         this.myPins.push({ "pinName": name, "pinUrl": url });
         this.pins.addPin({ "name": name, "url": url });
         this.newPinUrl = '';
         this.newPinName = '';
         this.hideAdd = false;
-        console.log(this.myPins);
+    };
+    MyPinsComponent.prototype.cancelAddPin = function () {
+        this.newPinUrl = '';
+        this.newPinName = '';
+        this.hideAdd = false;
     };
     MyPinsComponent.prototype.deletePin = function (i) {
         var name = this.myPins[i]["pinName"];
         var url = this.myPins[i]["pinUrl"];
-        console.log(name);
-        console.log(url);
         this.myPins.splice(i, 1);
         this.pins.deletePin({ "name": name, "url": url });
-        console.log(this.myPins);
     };
     MyPinsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.pins.getMyPins().subscribe(function (data) {
-            console.log("Get my pins is successful ", data);
-            console.log(data[0]["pins"].length);
             for (var i = 0; i < data[0]["pins"].length; i++) {
                 _this.myPins.push(data[0]["pins"][i]);
             }
-            console.log(_this.myPins);
         }, function (error) {
             console.log("Error", error);
         });
